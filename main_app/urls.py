@@ -13,5 +13,7 @@ urlpatterns = [
   # routes to update and delete
   path('cars/<int:pk>/update/', views.CarUpdate.as_view(), name='cars_update'),
   path('cars/<int:pk>/delete/', views.CarDelete.as_view(), name='cars_delete'),
-  
+  # route to signup
+  path('accounts/signup/', views.signup, name='signup'),
+  path('accounts/', views.account, name='account'),
 ]

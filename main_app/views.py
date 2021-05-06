@@ -3,6 +3,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .models import Car
 from django.views.generic.edit import CreateView
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 
@@ -13,19 +15,24 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
-# # Add the Car class & list and view function below the imports
-# class Car:  # Note that parens are optional if not inheriting from another class
-#   def __init__(self, name, breed, description, age):
-#     self.name = name
-#     self.breed = breed
-#     self.description = description
-#     self.age = age
-
-# cars = [
-#   Car('Lolo', 'tabby', 'foul little demon', 3),
-#   Car('Sachi', 'tortoise shell', 'diluted tortoise shell', 0),
-#   Car('Raven', 'black tripod', '3 legged car', 4)
-# ]
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    # This is how to create a 'user' form object
+    # that includes the data from the browser
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      # This will add the user to the database
+      user = form.save()
+      # This is how we log a user in via code
+      login(request, user)
+      return redirect('index')
+    else:
+      error_message = 'Invalid sign up - try again'
+  # A bad POST or a GET request, so render signup.html with an empty form
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'registration/signup.html', context)
 
 # cars index view
 def cars_index(request):
@@ -49,3 +56,7 @@ class CarUpdate(UpdateView):
 class CarDelete(DeleteView):
   model = Car
   success_url = '/cars/'
+
+def account(request):
+  # car = User.objects.get(user=user)
+  return render(request, 'accounts/profile.html')

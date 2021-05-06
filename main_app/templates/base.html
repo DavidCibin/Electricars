@@ -70,14 +70,14 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Cars</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'cars_create' %}">Add Car</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
-                {% comment %} <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li>
+                {% comment %} <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li> {% endcomment %}
                 {% if user.is_authenticated %}
-                <li><a href="{% url 'profile' %}">My Account</a></li>
-                <li><a href="{% url 'logout' %}">Log Out</a></li>
+                {% comment %} <li><a href="{% url 'profile' %}">My Account</a></li> {% endcomment %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Log Out</a></li>
                 {% else %}
-                  <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                  <li><a href="{% url 'login' %}">Log In</a></li>
-                {% endif %} {% endcomment %}
+                  <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Sign Up</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log In</a></li>
+                {% endif %}
             </ul>
           </div>
         </div>
