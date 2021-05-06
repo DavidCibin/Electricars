@@ -903,6 +903,9 @@ footer {
 	box-shadow: none;
 	border: 1px solid #eee;
 }
+/* .form-outline.form-white .form-control:focus~.form-label {
+  color: transparent;
+} */
 
 .contact-form textarea {
 	font-size: 14px;
