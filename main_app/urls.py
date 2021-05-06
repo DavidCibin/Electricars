@@ -10,5 +10,8 @@ urlpatterns = [
   path('cars/<int:car_id>/', views.cars_detail, name='detail'),
   # route used to show a form and create a car
   path('cars/create/', views.CarCreate.as_view(), name='cars_create'),
+  # routes to update and delete
+  path('cars/<int:pk>/update/', views.CarUpdate.as_view(), name='cars_update'),
+  path('cars/<int:pk>/delete/', views.CarDelete.as_view(), name='cars_delete'),
   
 ]

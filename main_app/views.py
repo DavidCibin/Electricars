@@ -40,3 +40,12 @@ class CarCreate(CreateView):
   model = Car
   fields = '__all__'
   success_url = '/cars/'
+
+class CarUpdate(UpdateView):
+  model = Car
+  # Let's disallow the renaming of a car by excluding the name field!
+  fields = ['breed', 'description', 'age']
+
+class CarDelete(DeleteView):
+  model = Car
+  success_url = '/cars/'
