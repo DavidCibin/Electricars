@@ -197,10 +197,10 @@ header {
     transition: all 0.3s ease-in-out 0s;
 }
 header .navbar {
-	padding: 17px 0px;
+	padding: 15px 0px;
 }
 .background-header .navbar {
-	padding: 17px 0px;
+	padding: 15px 0px;
 }
 .background-header {
 	top: 0;

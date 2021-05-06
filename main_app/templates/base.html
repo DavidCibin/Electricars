@@ -63,28 +63,21 @@
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home
+                    <a class="nav-link" href="{% url 'home' %}">Home
                       <span class="sr-only">(current)</span>
                     </a>
                 </li> 
-
-                <li class="nav-item"><a class="nav-link" href="fleet.html">Fleet</a></li>
-                <li class="nav-item"><a class="nav-link" href="offers.html">Offers</a></li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
-                    
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="blog.html">Blog</a>
-                      <a class="dropdown-item" href="team.html">Team</a>
-                      <a class="dropdown-item" href="testimonials.html">Testimonials</a>
-                      <a class="dropdown-item" href="terms.html">Terms</a>
-                    </div>
-                </li>
-
-                <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
-                
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                {% comment %} <li class="nav-item"><a class="nav-link" href="{% url 'cars' %}">Cars</a></li> {% endcomment %}
+                {% comment %} <li class="nav-item"><a class="nav-link" href="{% url 'offers' %}">Offers</a></li> {% endcomment %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
+                {% comment %} <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'profile' %}">My Account</a></li>
+                <li><a href="{% url 'logout' %}">Log Out</a></li>
+                {% else %}
+                  <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                  <li><a href="{% url 'login' %}">Log In</a></li>
+                {% endif %} {% endcomment %}
             </ul>
           </div>
         </div>
