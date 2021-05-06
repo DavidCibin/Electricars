@@ -67,8 +67,8 @@
                       <span class="sr-only">(current)</span>
                     </a>
                 </li> 
-                {% comment %} <li class="nav-item"><a class="nav-link" href="{% url 'cars' %}">Cars</a></li> {% endcomment %}
-                {% comment %} <li class="nav-item"><a class="nav-link" href="{% url 'offers' %}">Offers</a></li> {% endcomment %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Cars</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'cars_create' %}">Add Car</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
                 {% comment %} <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li>
                 {% if user.is_authenticated %}

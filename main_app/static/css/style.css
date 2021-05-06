@@ -1,3 +1,7 @@
+html, body{
+	position: relative;
+  min-height: 100%;
+}
 body {
   font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
@@ -5,6 +9,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.main {
+	min-height: 100vh; /* will cover the 100% of viewport */
+	overflow: hidden;
+	display: block;
+	position: relative;
+	padding-bottom: 180px; /* height of your footer */
+	padding-top: 90px;
+ }
+
 p {
 	margin-bottom: 0px;
 	font-size: 14px;
@@ -576,6 +590,7 @@ header .navbar {
 /* Footer */
 
 footer {
+	position: absolute;
   margin-top: 20px;
   bottom: 0;
   width: 100%;
@@ -903,9 +918,6 @@ footer {
 	box-shadow: none;
 	border: 1px solid #eee;
 }
-/* .form-outline.form-white .form-control:focus~.form-label {
-  color: transparent;
-} */
 
 .contact-form textarea {
 	font-size: 14px;
