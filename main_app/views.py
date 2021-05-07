@@ -75,7 +75,7 @@ class CarCreate(CreateView):
 class CarUpdate(UpdateView):
   model = Car
   # Let's disallow the renaming of a car by excluding the name field!
-  fields = ['model', 'passenger', 'luggage']
+  fields = '__all__'
 
 class CarDelete(DeleteView):
   model = Car

@@ -289,7 +289,7 @@ header .navbar {
 	background-color: #fff;	
 	height: 36px;
 	outline: none;
-	border-radius: 0px;
+	border-radius: 15%;
 	position: absolute;
 	right: 30px;
 	top: 20px;
@@ -297,7 +297,7 @@ header .navbar {
 .navbar .navbar-toggler-icon:after {
 	content: '\f0c9';
 	color: #f33f3f;
-	font-size: 18px;
+	font-size: 22px;
 	line-height: 26px;
 	font-family: 'FontAwesome';
 }

@@ -2,7 +2,7 @@
 {% block content %}
 {% load static %}
 
-<h1>car List</h1>
+<h1>Car List</h1>
 
 {% for car in cars %}
 <div class="card">
@@ -11,7 +11,7 @@
     <div class="card-content">
       <span class="card-title">{{ car.make }}</span>
       <p>Model: {{ car.model }}</p>
-      <p>Passenger: {{ car.passenger }}</p>
+      <p>Passenger: {{ car.passengers }}</p>
       {% if car.luggage > 0 %}
         <p>Luggage: {{ car.luggage }}</p>
       {% else %}
