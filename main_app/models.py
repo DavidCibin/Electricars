@@ -5,15 +5,25 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Car(models.Model):
-  name = models.CharField(max_length=100)
-  breed = models.CharField(max_length=100)
-  description = models.TextField(max_length=250)
-  age = models.IntegerField()
+  make = models.CharField(max_length=100)
+  model = models.CharField(max_length=100)
+  passengers = models.IntegerField()
+  luggage = models.IntegerField()
+  erange = models.IntegerField()
+  price = models.DecimalField(max_digits=6, decimal_places=2)
   user = models.ForeignKey(User, on_delete=models.CASCADE)
 
   def __str__(self):
-    return self.name
+    return self.make
     
   # Add this method
   def get_absolute_url(self):
     return reverse('detail', kwargs={'car_id': self.id})
+
+class Photo(models.Model):
+  url = models.CharField(max_length=200)
+  car = models.ForeignKey(Car, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return f"Photo for car_id: {self.car_id} @{self.url}"
+    
