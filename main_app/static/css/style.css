@@ -302,6 +302,59 @@ header .navbar {
 	font-family: 'FontAwesome';
 }
 
+/* Cars Booking Page */
+.detail-card {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-areas: 
+    "box1 box2 box3"
+}
+.card-left {
+	background: red;
+	grid-area: box1;
+}
+.card-center {
+	background: yellow;
+	grid-area: box2;
+}
+.card-right {
+	background: green;
+	grid-area: box3;
+}
+
+.card-img-top {
+	min-width: 260px;
+	max-width: 400px;
+}
+@media (max-width: 800px) {
+	.detail-card {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas: 
+			"box1 box1"
+			"box2 box3"
+	}
+	.card-left {
+		background: red;
+		grid-area: box1;
+		justify-self: center;
+	}
+}
+@media (max-width: 550px) {
+	.detail-card {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-areas: 
+			"box1"
+			"box2"
+			"box3"
+	}
+	.card-left {
+		background: red;
+		grid-area: box1;
+		justify-self: center;
+	}
+}
 
 
 /* Banner Style */

@@ -3,9 +3,9 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 import uuid
 import boto3
-from .models import Car, Photo
+from .models import Car, Photo, Profile
 from django.views.generic.edit import CreateView
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm
 
@@ -49,8 +49,18 @@ def signup(request):
     if form.is_valid():
       # This will add the user to the database
       user = form.save()
-      # This is how we log a user in via code
+      user.refresh_from_db()
+      # user.profile.first_name = form.cleaned_data.get('first_name')
+      # user.profile.last_name = form.cleaned_data.get('last_name')
+      # user.profile.email = form.cleaned_data.get('email')
+      user.profile.bio = form.cleaned_data.get('bio')
+      user.save()
+      # username = form.cleaned_data.get('username')
+      # password = form.cleaned_data.get('password1')
+      # user = authenticate(username=username, password=password)
       login(request, user)
+      # This is how we log a user in via code
+      # login(request, user)
       return redirect('index')
     else:
       error_message = 'Invalid sign up - try again'

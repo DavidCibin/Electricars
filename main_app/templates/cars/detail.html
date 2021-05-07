@@ -3,6 +3,30 @@
 
 <h1>Car Details</h1>
 
+<div class="card" style="max-width: 1000px;">
+  <div class="card-header">
+    Featured
+  </div>
+  <div class="detail-card">
+    <div class="card-left">
+      {% for photo in car.photo_set.all %}
+        <img class="card-img-top" src="{{photo.url}}">
+      {% empty %}
+        <img class="card-img-top" src="https://i.ibb.co/TbQNcvH/nocar.webp" alt="nocar" border="0">
+      {% endfor %}
+    </div>
+    <div class="card-body card-center">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    </div>
+    <div class="card-body card-right">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</div>
+
 <div class="card">
   <div class="card-content">
     <span class="card-title">{{ car.make }}</span>
