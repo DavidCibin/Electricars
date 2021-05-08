@@ -46,12 +46,9 @@
     {% if car.luggage > 0 %}
     <p>Luggage: {{ car.luggage }}</p>
     {% else %}
-    <p>Luggage: Kitten</p>
+    <p>Luggage: N/A</p>
     {% endif %}
-    <p>Total: {{car.total}}</p>
-    <p>Start: {{car.start_date}}</p>
-    <p>End: {{booking.end_date}}</p>
-
+    
     <div>
       <form action="{% url 'add_booking' car.id %}" method="post">
         {% csrf_token %}
@@ -71,13 +68,17 @@
 <div class="col s6">
   <table class="striped">
     <thead>
-      <tr><th>Date</th><th>Meal</th></tr>
+      <tr><th>Pick-up</th><th>Drop-off</th><th>Coverage</th><th>Total</th></tr>
     </thead>
     <tbody>
       {% for booking in car.booking_set.all %}
         <tr>
-          <td>{{booking.date}}</td>
-          <td>{{booking.get_insurance_display}}</td>
+          <td>{{user.first_name}} {{user.last_name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{booking.start_date}} </td>
+          <td>{{booking.end_date}} </td>
+          <td>{{booking.get_insurance_display}} </td>
+          <td>{{booking.total}} </td>
         </tr>
       {% endfor %}
     </tbody>
@@ -101,19 +102,32 @@
 
 <script>
   var start_dateEl = document.getElementById('id_start_date');
-  M.Datepicker.init(start_dateEl, {
+  const test1 = M.Datepicker.init(start_dateEl, {
     format: 'yyyy-mm-dd',
     defaultDate: new Date(),
+    minDate: new Date(),
+    yearRange: 1,
     setDefaultDate: true,
     autoClose: true
   });
   var end_dateEl = document.getElementById('id_end_date');
-  M.Datepicker.init(end_dateEl, {
+  var today = new Date();
+  var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
+  var topMaxDate = new Date().setDate(today.getDate()+90;
+  const test2 = M.Datepicker.init(end_dateEl, {
     format: 'yyyy-mm-dd',
-    defaultDate: new Date(),
+    defaultDate: tomorrow,
+    minDate: new Date(),
+    maxDate: new Date(topMaxDate),
     setDefaultDate: true,
     autoClose: true
   });
+
+  
+  const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+  const firstDate = test1.date;
+  const secondDate = test2.date;
+  const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
 
   // add additional JS to initialize select below
   var selectEl = document.getElementById('id_insurance');

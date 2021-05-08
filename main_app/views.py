@@ -81,17 +81,17 @@ def cars_detail(request, car_id):
   booking_form = BookingForm()
   return render(request, 'cars/detail.html', { 'car': car, 'booking_form': booking_form })
 
-  def add_booking(request, car_id):
-    # create a ModelForm instance using the data in request.POST
-    form = BookingForm(request.POST)
-    # validate the form
-    if form.is_valid():
-      # don't save the form to the db until it
-      # has the car_id assigned
-      new_booking = form.save(commit=False)
-      new_booking.car_id = car_id
-      new_booking.save()
-    return redirect('detail', car_id=car_id)
+def add_booking(request, car_id):
+  # create a ModelForm instance using the data in request.POST
+  form = BookingForm(request.POST)
+  # validate the form
+  if form.is_valid():
+    # don't save the form to the db until it
+    # has the car_id assigned
+    new_booking = form.save(commit=False)
+    new_booking.car_id = car_id
+    new_booking.save()
+  return redirect('detail', car_id=car_id)
 
 class CarCreate(CreateView):
   model = Car

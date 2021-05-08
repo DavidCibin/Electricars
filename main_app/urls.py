@@ -13,11 +13,11 @@ urlpatterns = [
   # routes to update and delete
   path('cars/<int:pk>/update/', views.CarUpdate.as_view(), name='cars_update'),
   path('cars/<int:pk>/delete/', views.CarDelete.as_view(), name='cars_delete'),
+  # route for the booking/insurance
+  path('cars/<int:car_id>/add_booking/', views.add_booking, name='add_booking'),
   # route to signup
   path('accounts/signup/', views.signup, name='signup'),
   path('accounts/', views.account, name='account'),
   # route for photos
   path('cars/<int:car_id>/add_photo/', views.add_photo, name='add_photo'),
-  # route for the booking/insurance
-  path('cars/<int:car_id>/add_booking/', views.add_booking, name='add_booking'),
 ]
