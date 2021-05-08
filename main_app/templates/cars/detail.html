@@ -68,12 +68,13 @@
 <div class="col s6">
   <table class="striped">
     <thead>
-      <tr><th>Pick-up</th><th>Drop-off</th><th>Coverage</th><th>Total</th></tr>
+      <tr><th>Name</th><th>Bio</th><th>Drop-off</th><th>Pick-up</th><th>Drop-off</th><th>Coverage</th><th>Total</th></tr>
     </thead>
     <tbody>
       {% for booking in car.booking_set.all %}
         <tr>
           <td>{{user.first_name}} {{user.last_name}}</td>
+          <td>{{user.profile.bio}}</td>
           <td>{{user.email}}</td>
           <td>{{booking.start_date}} </td>
           <td>{{booking.end_date}} </td>
