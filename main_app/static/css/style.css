@@ -644,7 +644,7 @@ header .navbar {
 /* Footer */
 
 footer {
-	position: absolute;
+	position: fixed;
   margin-top: 20px;
   bottom: 0;
   width: 100%;

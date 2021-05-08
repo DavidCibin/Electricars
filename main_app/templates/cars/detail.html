@@ -5,14 +5,25 @@
 
 <div class="card" style="max-width: 1000px;">
   <div class="card-header">
-    Featured
+    <!-- <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
+
+    <script>
+      $(function () {
+        $('input[name="daterange"]').daterangepicker({
+          "autoApply": true,
+          "startDate": "05/07/2021",
+          "endDate": "05/08/2021"
+        }, function (start, end, label) {
+          console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+        });
+    </script> -->
   </div>
   <div class="detail-card">
     <div class="card-left">
       {% for photo in car.photo_set.all %}
-        <img class="card-img-top" src="{{photo.url}}">
+      <img class="card-img-top" src="{{photo.url}}">
       {% empty %}
-        <img class="card-img-top" src="https://i.ibb.co/TbQNcvH/nocar.webp" alt="nocar" border="0">
+      <img class="card-img-top" src="https://i.ibb.co/TbQNcvH/nocar.webp" alt="nocar" border="0">
       {% endfor %}
     </div>
     <div class="card-body card-center">
@@ -33,28 +44,79 @@
     <p>Model: {{ car.model }}</p>
     <p>Passenger: {{ car.passengers }}</p>
     {% if car.luggage > 0 %}
-      <p>Luggage: {{ car.luggage }}</p>
+    <p>Luggage: {{ car.luggage }}</p>
     {% else %}
-      <p>Luggage: Kitten</p>
+    <p>Luggage: Kitten</p>
     {% endif %}
+    <p>Total: {{car.total}}</p>
+    <p>Start: {{car.start_date}}</p>
+    <p>End: {{booking.end_date}}</p>
+
+    <div>
+      <form action="{% url 'add_booking' car.id %}" method="post">
+        {% csrf_token %}
+        {{ booking_form.as_p }}
+        <input type="submit" class="btn" value="Add booking">
+      </form>
+      <!-- new code above -->
+      <table class="striped">
+    </div>
+
   </div>
   <div class="card-action">
     <a href="{% url 'cars_update' car.id %}">Edit</a>
     <a href="{% url 'cars_delete' car.id %}">Delete</a>
   </div>
 </div>
+<div class="col s6">
+  <table class="striped">
+    <thead>
+      <tr><th>Date</th><th>Meal</th></tr>
+    </thead>
+    <tbody>
+      {% for booking in car.booking_set.all %}
+        <tr>
+          <td>{{booking.date}}</td>
+          <td>{{booking.get_insurance_display}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+
 <!-- Insert photo markup below this comment -->
 {% for photo in car.photo_set.all %}
-  <img class="responsive-img card-panel" src="{{photo.url}}">
+<img class="responsive-img card-panel" src="{{photo.url}}">
 {% empty %}
-  <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+<div class="card-panel teal-text center-align">No Photos Uploaded</div>
 {% endfor %}
 <!-- new code below -->
 <form action="{% url 'add_photo' car.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
-    {% csrf_token %}
-    <input type="file" name="photo-file">
-    <br><br>
-    <input type="submit" class="btn" value="Upload Photo">
+  {% csrf_token %}
+  <input type="file" name="photo-file">
+  <br><br>
+  <input type="submit" class="btn" value="Upload Photo">
 </form>
 
+<script>
+  var start_dateEl = document.getElementById('id_start_date');
+  M.Datepicker.init(start_dateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
+  });
+  var end_dateEl = document.getElementById('id_end_date');
+  M.Datepicker.init(end_dateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
+  });
+
+  // add additional JS to initialize select below
+  var selectEl = document.getElementById('id_insurance');
+  M.FormSelect.init(selectEl);
+</script>
 {% endblock %}

@@ -9,12 +9,14 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm
 
+from .forms import BookingForm
+
 
 # Create your views here.
 
 S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
 BUCKET = 'electricar'
-def add_photo(request, cat_id):
+def add_photo(request, car_id):
   # photo-file will be the "name" attribute on the <input type="file">
   photo_file = request.FILES.get('photo-file', None)
   if photo_file:
@@ -26,12 +28,12 @@ def add_photo(request, cat_id):
       s3.upload_fileobj(photo_file, BUCKET, key)
       # build the full url string
       url = f"{S3_BASE_URL}{BUCKET}/{key}"
-      # we can assign to cat_id or cat (if you have a cat object)
-      photo = Photo(url=url, cat_id=cat_id)
+      # we can assign to car_id or car (if you have a car object)
+      photo = Photo(url=url, car_id=car_id)
       photo.save()
     except Exception as err:
       print('An error occurred uploading file to S3: %s' % err)
-  return redirect('detail', cat_id=cat_id)
+  return redirect('detail', car_id=car_id)
 
 # Define the home view
 def home(request):
@@ -76,7 +78,20 @@ def cars_index(request):
 
 def cars_detail(request, car_id):
   car = Car.objects.get(id=car_id)
-  return render(request, 'cars/detail.html', { 'car': car })
+  booking_form = BookingForm()
+  return render(request, 'cars/detail.html', { 'car': car, 'booking_form': booking_form })
+
+  def add_booking(request, car_id):
+    # create a ModelForm instance using the data in request.POST
+    form = BookingForm(request.POST)
+    # validate the form
+    if form.is_valid():
+      # don't save the form to the db until it
+      # has the car_id assigned
+      new_booking = form.save(commit=False)
+      new_booking.car_id = car_id
+      new_booking.save()
+    return redirect('detail', car_id=car_id)
 
 class CarCreate(CreateView):
   model = Car

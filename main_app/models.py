@@ -31,6 +31,30 @@ class Photo(models.Model):
     return f"Photo for car_id: {self.car_id} @{self.url}"
 
 
+INSURANCE = (
+    ('N', 'No Coverage'),
+    ('F', 'Full Coverage'),
+)
+
+class Booking(models.Model):
+  start_date = models.DateField()
+  end_date = models.DateField()
+  total = models.DecimalField(max_digits=6, decimal_places=2)
+  insurance = models.CharField(
+    max_length=1,
+    # add the 'choices' field option
+    choices=INSURANCE,
+    # set the default value for meal to be 'B'
+    default=INSURANCE[0][0]
+  )
+
+  car = models.ForeignKey(Car, on_delete=models.CASCADE)
+
+  def __str__(self):
+    # Nice method for obtaining the friendly value of a Field.choice
+    return f"{self.get_insurance_display()} on {self.start_date}"
+
+
 class Profile(models.Model):
     user = models.OneToOneField(
         User,

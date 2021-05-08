@@ -34,26 +34,30 @@
       rel="stylesheet"
     />
 
+    <!-- materialize date picker for booking --->
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
     <!-- Additional CSS Files -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/owl.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-
+    
   </head>
-
+  
   <body>
-
+    
     <!-- ***** Preloader Start ***** -->
     <div id="preloader">
-        <div class="jumper">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+      <div class="jumper">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>  
     <!-- ***** Preloader End ***** -->
-
+    
     <!-- Header -->
     <header class="">
       <nav class="navbar navbar-expand-lg">
@@ -64,102 +68,107 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'home' %}">Home
-                      <span class="sr-only">(current)</span>
-                    </a>
-                </li> 
-                <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Cars</a></li>
-                {% if user.is_superuser %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'cars_create' %}">Add Car</a></li>
-                {% endif %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
-                {% comment %} <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li> {% endcomment %}
-                {% if user.is_authenticated %}
-                {% comment %} <li><a href="{% url 'profile' %}">My Account</a></li> {% endcomment %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Log Out</a></li>
-                {% else %}
-                  <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Sign Up</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log In</a></li>
-                {% endif %}
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'home' %}">Home
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li> 
+              <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Cars</a></li>
+              {% if user.is_superuser %}
+              <li class="nav-item"><a class="nav-link" href="{% url 'cars_create' %}">Add Car</a></li>
+              {% endif %}
+              <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
+              {% comment %} <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li> {% endcomment %}
+              {% if user.is_authenticated %}
+              {% comment %} <li><a href="{% url 'profile' %}">My Account</a></li> {% endcomment %}
+              <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Log Out</a></li>
+              {% else %}
+              <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Sign Up</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log In</a></li>
+              {% endif %}
             </ul>
           </div>
         </div>
       </nav>
     </header>
-
+    
     <main class="main">
       {% block content %}
       {% endblock %}
     </main>
-
-
-
-
-  <footer class="bg-dark text-center text-white">
-  <!-- Grid container -->
-  <div class="container p-4 pb-0">
-    <!-- Section: Form -->
-    <section class="">
-      <form action="">
-        <!--Grid row-->
-        <div class="row d-flex justify-content-center">
-          <!--Grid column-->
-          <div class="col-auto">
-            <p class="text-white pt-2">
-              <strong>Sign up for our newsletter</strong>
-            </p>
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-md-5 col-12">
-            <!-- Email input -->
-            <div class="form-outline form-white mb-4">
-              <input type="email" id="form5Example2" class="form-control" />
-              <label class="form-label" for="form5Example2">Email address</label>
+    
+    
+    
+    
+    <footer class="bg-dark text-center text-white">
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <!-- Section: Form -->
+        <section class="">
+          <form action="">
+            <!--Grid row-->
+            <div class="row d-flex justify-content-center">
+              <!--Grid column-->
+              <div class="col-auto">
+                <p class="text-white pt-2">
+                  <strong>Sign up for our newsletter</strong>
+                </p>
+              </div>
+              <!--Grid column-->
+              
+              <!--Grid column-->
+              <div class="col-md-5 col-12">
+                <!-- Email input -->
+                <div class="form-outline form-white mb-4">
+                  <input type="email" id="form5Example2" class="form-control" />
+                  <label class="form-label" for="form5Example2">Email address</label>
+                </div>
+              </div>
+              <!--Grid column-->
+              
+              <!--Grid column-->
+              <div class="col-auto">
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-outline-light mb-4">
+                  Subscribe
+                </button>
+              </div>
+              <!--Grid column-->
             </div>
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-auto">
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-outline-light mb-4">
-              Subscribe
-            </button>
-          </div>
-          <!--Grid column-->
-        </div>
-        <!--Grid row-->
-      </form>
-    </section>
-    <!-- Section: Form -->
-  </div>
-  <!-- Grid container -->
-
-  <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);"><!-- Github -->
-      <a class="btn btn-outline-light btn-floating m-1 footer-icons" href="https://github.com/DavidCibin" role="button"
+            <!--Grid row-->
+          </form>
+        </section>
+        <!-- Section: Form -->
+      </div>
+      <!-- Grid container -->
+      
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);"><!-- Github -->
+        <a class="btn btn-outline-light btn-floating m-1 footer-icons" href="https://github.com/DavidCibin" role="button"
         ><i class="fab fa-github"></i
-      ></a>
-    © <script>document.write(new Date().getFullYear());</script> Copyright
-    <a class="text-white" href="http://www.davidcibin.com/">davidcibin.com</a><!-- Linkedin -->
-      <a class="btn btn-outline-light btn-floating m-1 footer-icons" href="https://www.linkedin.com/in/davidcibin/" role="button"
-        ><i class="fab fa-linkedin-in"></i
-      ></a>
-  </div>
-  <!-- Copyright -->
-</footer>
-
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="{% static 'jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-
-
-    <!-- Additional Scripts -->
-    <script src="{% static 'js/custom.js' %}"></script>
-    <script src="{% static 'js/owl.js' %}"></script>
-  </body>
-</html>
+          ></a>
+          © <script>document.write(new Date().getFullYear());</script> Copyright
+          <a class="text-white" href="http://www.davidcibin.com/">davidcibin.com</a><!-- Linkedin -->
+          <a class="btn btn-outline-light btn-floating m-1 footer-icons" href="https://www.linkedin.com/in/davidcibin/" role="button"
+          ><i class="fab fa-linkedin-in"></i
+            ></a>
+          </div>
+          <!-- Copyright -->
+        </footer>
+        
+        <!-- daterangerpicker -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+        
+        <!-- Bootstrap core JavaScript -->
+        <script src="{% static 'jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        
+        
+        <!-- Additional Scripts -->
+        <script src="{% static 'js/custom.js' %}"></script>
+        <script src="{% static 'js/owl.js' %}"></script>
+      </body>
+      </html>

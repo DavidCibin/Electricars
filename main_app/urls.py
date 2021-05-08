@@ -18,4 +18,6 @@ urlpatterns = [
   path('accounts/', views.account, name='account'),
   # route for photos
   path('cars/<int:car_id>/add_photo/', views.add_photo, name='add_photo'),
+  # route for the booking/insurance
+  path('cars/<int:car_id>/add_booking/', views.add_booking, name='add_booking'),
 ]
