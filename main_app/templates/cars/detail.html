@@ -5,7 +5,7 @@
 
 <div class="card" style="max-width: 1000px;">
   <div class="card-header">
-    <!-- <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
+    <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
 
     <script>
       $(function () {
@@ -16,7 +16,7 @@
         }, function (start, end, label) {
           console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
         });
-    </script> -->
+    </script>
   </div>
   <div class="detail-card">
     <div class="card-left">
@@ -38,25 +38,32 @@
   </div>
 </div>
 
+<script>
+  function testing() {
+    let totalValue = car.price
+    console.log(totalValue, '1totalValue')
+  }
+  testing()
+</script>
 <div class="card">
   <div class="card-content">
     <span class="card-title">{{ car.make }}</span>
     <p>Model: {{ car.model }}</p>
     <p>Passenger: {{ car.passengers }}</p>
-    {% if car.luggage > 0 %}
     <p>Luggage: {{ car.luggage }}</p>
-    {% else %}
-    <p>Luggage: N/A</p>
-    {% endif %}
-    
+    <p>Range: {{ car.erange }} miles</p>
+    <p id="price" type="number" value="{{ car.price }}">${{ car.price }} per/day</p>
+
+    {% with carprice=car.price %}
+      <p id="total" type="number" value="{{ car.price }}">Total ${{ carprice }}</p>
+    {% endwith %}
     <div>
       <form action="{% url 'add_booking' car.id %}" method="post">
         {% csrf_token %}
         {{ booking_form.as_p }}
         <input type="submit" class="btn" value="Add booking">
-      </form>
-      <!-- new code above -->
-      <table class="striped">
+        <!-- new code above -->
+        <table class="striped">
     </div>
 
   </div>
@@ -68,19 +75,27 @@
 <div class="col s6">
   <table class="striped">
     <thead>
-      <tr><th>Name</th><th>Bio</th><th>Drop-off</th><th>Pick-up</th><th>Drop-off</th><th>Coverage</th><th>Total</th></tr>
+      <tr>
+        <th>Name</th>
+        <th>Bio</th>
+        <th>Drop-off</th>
+        <th>Pick-up</th>
+        <th>Drop-off</th>
+        <th>Coverage</th>
+        <th>Total</th>
+      </tr>
     </thead>
     <tbody>
       {% for booking in car.booking_set.all %}
-        <tr>
-          <td>{{user.first_name}} {{user.last_name}}</td>
-          <td>{{user.profile.bio}}</td>
-          <td>{{user.email}}</td>
-          <td>{{booking.start_date}} </td>
-          <td>{{booking.end_date}} </td>
-          <td>{{booking.get_insurance_display}} </td>
-          <td>{{booking.total}} </td>
-        </tr>
+      <tr>
+        <td>{{user.first_name}} {{user.last_name}}</td>
+        <td>{{user.profile.bio}}</td>
+        <td>{{user.email}}</td>
+        <td>{{booking.start_date}} </td>
+        <td>{{booking.end_date}} </td>
+        <td>{{booking.get_insurance_display}} </td>
+        <td>{{booking.total}} </td>
+      </tr>
       {% endfor %}
     </tbody>
   </table>
@@ -103,48 +118,36 @@
 
 <script>
   var start_dateEl = document.getElementById('id_start_date');
-  const test1 = M.Datepicker.init(start_dateEl, {
+  var firstDate = M.Datepicker.init(start_dateEl, {
     format: 'yyyy-mm-dd',
     defaultDate: new Date(),
     minDate: new Date(),
     yearRange: 1,
     setDefaultDate: true,
     autoClose: true,
-    onSelect: getStartDate => { 
-      startDate = test1.date
-      return startDate},
-    // onSelect: getEndDate(),
+    onSelect: getStartDate => {
+      startDate = firstDate.date
+      console.log(startDate)
+      return startDate
+    },
   });
   var end_dateEl = document.getElementById('id_end_date');
   var today = new Date();
   var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
-  var topMaxDate = new Date().setDate(today.getDate()+90);
-  const test2 = M.Datepicker.init(end_dateEl, {
+  var topMaxDate = new Date().setDate(today.getDate() + 90);
+  var lastDate = M.Datepicker.init(end_dateEl, {
     format: 'yyyy-mm-dd',
     defaultDate: tomorrow,
     minDate: new Date(),
     maxDate: new Date(topMaxDate),
     setDefaultDate: true,
     autoClose: true,
-    onSelect: getEndDate => { 
-      endDate = test2.date
-      return endDate},
-
-    // onSelect: getEndDate(),
+    onSelect: getEndDate => {
+      endDate = lastDate.date
+      console.log(endDate)
+    },
   });
 
-  // function getEndDate() {
-  //   endDate = test2.date
-  //   alert(endDate)
-  // }
-  function getDates() {
-    getEndDate()
-    dateRange = endDate
-    return dateRange
-  }
-  getDates()
-
-  
   const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
   const firstDate = test1.date;
   const secondDate = test2.date;
@@ -154,4 +157,9 @@
   var selectEl = document.getElementById('id_insurance');
   M.FormSelect.init(selectEl);
 </script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 {% endblock %}
