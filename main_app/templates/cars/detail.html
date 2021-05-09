@@ -18,6 +18,7 @@
           console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
         });
     </script>
+
   </div>
   <div class="detail-card">
     <div class="card-left">
@@ -39,13 +40,6 @@
   </div>
 </div>
 
-<script>
-        function testing() {
-          let totalValue = car.price
-          console.log(totalValue, '1totalValue')
-        }
-        testing()
-</script>
 <div class="card">
   <div class="card-content">
     <span class="card-title">{{ car.make }}</span>
@@ -77,6 +71,7 @@
   <table class="striped">
     <thead>
       <tr>
+        <th>Reservation</th>
         <th>Name</th>
         <th>Bio</th>
         <th>Drop-off</th>
@@ -89,6 +84,7 @@
     <tbody>
       {% for booking in car.booking_set.all %}
       <tr>
+        <td>res{{booking.id}}</td>
         <td>{{user.first_name}} {{user.last_name}}</td>
         <td>{{user.profile.bio}}</td>
         <td>{{user.email}}</td>
@@ -141,8 +137,8 @@
         var end_dateEl = document.getElementById('id_end_date');
         var today = new Date();
         var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
-        console.log(nextDay, 'nextDay')
-        
+        console.log(nextDay, 'nextDay!!')
+
         function here() {
           if (nextDay !== '') {
             dd = nextDay
@@ -178,17 +174,14 @@
         var totalDays = ''
         function getDays() {
           totalDays = Math.round(Math.abs((endDate - startDate) / oneDay));
-          console.log(totalDays,'totalDays!!')
+          console.log(totalDays, 'totalDays!!')
           console.log(startDate)
           console.log(endDate)
-        }          
-        
+        }
+
         function test() {
           console.log(totalDays, 'check!!')
         }
-      
-
-
 
         // add additional JS to initialize select below
         var selectEl = document.getElementById('id_insurance');
