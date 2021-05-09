@@ -109,20 +109,40 @@
     minDate: new Date(),
     yearRange: 1,
     setDefaultDate: true,
-    autoClose: true
+    autoClose: true,
+    onSelect: getStartDate => { 
+      startDate = test1.date
+      return startDate},
+    // onSelect: getEndDate(),
   });
   var end_dateEl = document.getElementById('id_end_date');
   var today = new Date();
   var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
-  var topMaxDate = new Date().setDate(today.getDate()+90;
+  var topMaxDate = new Date().setDate(today.getDate()+90);
   const test2 = M.Datepicker.init(end_dateEl, {
     format: 'yyyy-mm-dd',
     defaultDate: tomorrow,
     minDate: new Date(),
     maxDate: new Date(topMaxDate),
     setDefaultDate: true,
-    autoClose: true
+    autoClose: true,
+    onSelect: getEndDate => { 
+      endDate = test2.date
+      return endDate},
+
+    // onSelect: getEndDate(),
   });
+
+  // function getEndDate() {
+  //   endDate = test2.date
+  //   alert(endDate)
+  // }
+  function getDates() {
+    getEndDate()
+    dateRange = endDate
+    return dateRange
+  }
+  getDates()
 
   
   const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
