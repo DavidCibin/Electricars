@@ -17,7 +17,7 @@ class Car(models.Model):
   user = models.ForeignKey(User, on_delete=models.CASCADE)
 
   def __str__(self):
-    return self.make
+    return f"{self.make}/{self.model} (car id# {self.id})"
     
   # Add this method
   def get_absolute_url(self):
@@ -57,7 +57,7 @@ class Booking(models.Model):
 
   def __str__(self):
     # Nice method for obtaining the friendly value of a Field.choice
-    return f"{self.booking_id} - {self.get_insurance_display()} on {self.start_date}"
+    return f"{self.get_insurance_display()} P/U {self.start_date} - D/O {self.start_date}"
 
 
 class Profile(models.Model):
@@ -66,7 +66,17 @@ class Profile(models.Model):
         on_delete=models.CASCADE,
         primary_key=True,
     )
-    bio = models.CharField(max_length=100, help_text='bio')
+    # admin view
+    bio = models.CharField(max_length=100, help_text='bbbbio')
+    Address1 = models.CharField(max_length=100, help_text='Address 1')
+    Address2 = models.CharField(max_length=100, help_text='Address 2')
+    city = models.CharField(max_length=100, help_text='city')
+    state = models.CharField(max_length=2, help_text='state')
+    zipcode = models.CharField(max_length=5, help_text='zipcode')
+
+    def __str__(self):
+      # Nice method for obtaining the friendly value of a Field.choice
+      return f"ID#:{self.user.id} - {self.user.first_name} {self.user.last_name}"
 
 class Meta:
         managed = False

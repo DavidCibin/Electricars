@@ -6,7 +6,7 @@
 
 <div class="card" style="max-width: 1000px;">
   <div class="card-header">
-    <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
+    <!-- <input type="text" name="daterange" value="01/01/2018 - 01/15/2018"/>
 
     <script>
       $(function () {
@@ -17,7 +17,7 @@
         }, function (start, end, label) {
           console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
         });
-    </script>
+    </script> -->
 
   </div>
   <div class="detail-card">
@@ -53,9 +53,11 @@
     <p id="total" type="number" value="{{ car.price }}">Total ${{ carprice }}</p>
     {% endwith %}
     <div>
-      <form action="{% url 'add_booking' car.id %}" method="post">
+      <form action="" method="post">
         {% csrf_token %}
         {{ booking_form.as_p }}
+        {{ profile_form.as_p }}
+        
         <input type="submit" class="btn" value="Add booking">
         <!-- new code above -->
         <table class="striped">
@@ -67,6 +69,7 @@
     <a href="{% url 'cars_delete' car.id %}">Delete</a>
   </div>
 </div>
+<td>?? {{user}}</td>
 <div class="col s6">
   <table class="striped">
     <thead>

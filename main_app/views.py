@@ -10,6 +10,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm
 
 from .forms import BookingForm
+from .forms import ProfileForm
 
 
 # Create your views here.
@@ -52,10 +53,11 @@ def signup(request):
       # This will add the user to the database
       user = form.save()
       user.refresh_from_db()
-      # user.profile.first_name = form.cleaned_data.get('first_name')
-      # user.profile.last_name = form.cleaned_data.get('last_name')
-      # user.profile.email = form.cleaned_data.get('email')
-      user.profile.bio = form.cleaned_data.get('bio')
+      user.username = user.email
+      user.profile.first_name = form.cleaned_data.get('first_name')
+      user.profile.last_name = form.cleaned_data.get('last_name')
+      user.profile.email = form.cleaned_data.get('email')
+      user.profile.bio = form.cleaned_data.get('biooo')
       user.save()
       # username = form.cleaned_data.get('username')
       # password = form.cleaned_data.get('password1')
@@ -79,7 +81,21 @@ def cars_index(request):
 def cars_detail(request, car_id):
   car = Car.objects.get(id=car_id)
   booking_form = BookingForm()
-  return render(request, 'cars/detail.html', { 'car': car, 'booking_form': booking_form })
+  profile__form = ProfileForm()
+
+  return render(request, 'cars/detail.html', { 'car': car, 'booking_form': booking_form, 'profile__form': profile__form })
+
+def add_profile(request, car_id):
+  # create a ModelForm instance using the data in request.POST
+  form = ProfileForm(request.POST)
+  # validate the form
+  if form.is_valid():
+    # don't save the form to the db until it
+    # has the car_id assigned
+    new_profile = form.save(commit=False)
+    new_profile.car_id = car_id
+    new_profile.save()
+  return redirect('detail', car_id=car_id)
 
 def add_booking(request, car_id):
   # create a ModelForm instance using the data in request.POST

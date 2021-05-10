@@ -15,6 +15,8 @@ urlpatterns = [
   path('cars/<int:pk>/delete/', views.CarDelete.as_view(), name='cars_delete'),
   # route for the booking/insurance
   path('cars/<int:car_id>/add_booking/', views.add_booking, name='add_booking'),
+  # route for the add profile
+  path('cars/<int:car_id>/add_profile/', views.add_profile, name='add_profile'),
   # route to signup
   path('accounts/signup/', views.signup, name='signup'),
   path('accounts/', views.account, name='account'),
