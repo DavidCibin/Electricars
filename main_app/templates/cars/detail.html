@@ -1,23 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 <h1>Car Details</h1>
 
 <div class="card" style="max-width: 1000px;">
   <div class="card-header">
-    <!-- <input type="text" name="daterange" value="01/01/2018 - 01/15/2018"/>
+    <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
 
     <script>
+
       $(function () {
         $('input[name="daterange"]').daterangepicker({
-          "autoApply": true,
-          "startDate": "05/07/2021",
-          "endDate": "05/08/2021"
+          opens: 'left'
         }, function (start, end, label) {
-          console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+          console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
         });
-    </script> -->
+      });
+    </script>
 
   </div>
   <div class="detail-card">
@@ -53,15 +57,22 @@
     <p id="total" type="number" value="{{ car.price }}">Total ${{ carprice }}</p>
     {% endwith %}
     <div>
-      <form action="" method="post">
+      <form action="{% url 'add_booking' car.id %}" method="POST">
         {% csrf_token %}
         {{ booking_form.as_p }}
         {{ profile_form.as_p }}
-        
+        <!-- <input id="address1" type="text" name="address1">
+        <input id="address2" type="text" name="address2">
+        <input id="city" type="text" name="city">
+        <input id="state" type="text" name="state">
+        <input id="zipcode" type="text" name="zipcode"> -->
+
         <input type="submit" class="btn" value="Add booking">
         <!-- new code above -->
         <table class="striped">
+      </form>
     </div>
+
 
   </div>
   <div class="card-action">
@@ -117,83 +128,80 @@
 </form>
 
 <script>
-        var startDate = new Date();
-        var nextDay = ''
-        var start_dateEl = document.getElementById('id_start_date');
-        var firstDate = M.Datepicker.init(start_dateEl, {
-          format: 'yyyy-mm-dd',
-          defaultDate: new Date(),
-          minDate: new Date(),
-          yearRange: 1,
-          setDefaultDate: true,
-          autoClose: true,
-          onSelect: d1 => {
-            startDate = firstDate.date
-            console.log(startDate, 'startDate!!')
-            nextDay = new Date(startDate.getTime() + (24 * 60 * 60 * 1000));
-            console.log(nextDay, 'nextDay!!')
-            here()
-          },
-        });
-        var endDate = '';
-        var dd = ''
-        var end_dateEl = document.getElementById('id_end_date');
-        var today = new Date();
-        var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
-        console.log(nextDay, 'nextDay!!')
+  var startDate = new Date();
+  var nextDay = ''
+  var start_dateEl = document.getElementById('id_start_date');
+  var firstDate = M.Datepicker.init(start_dateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    minDate: new Date(),
+    yearRange: 1,
+    setDefaultDate: true,
+    autoClose: true,
+    onSelect: d1 => {
+      startDate = firstDate.date
+      console.log(startDate, 'startDate!!')
+      nextDay = new Date(startDate.getTime() + (24 * 60 * 60 * 1000));
+      console.log(nextDay, 'nextDay!!')
+      here()
+    },
+  });
+  var endDate = '';
+  var dd = ''
+  var end_dateEl = document.getElementById('id_end_date');
+  var today = new Date();
+  var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
+  console.log(nextDay, 'nextDay!!')
 
-        function here() {
-          if (nextDay !== '') {
-            dd = nextDay
-            console.log(dd, 'dd if')
-            return dd
-          }
-          else {
-            dd = tomorrow
-            console.log(dd, 'dd else')
-            return dd
-          }
-        }
-        var topMaxDate = new Date().setDate(today.getDate() + 90);
-        var lastDate = M.Datepicker.init(end_dateEl, {
-          format: 'yyyy-mm-dd',
-          defaultDate: tomorrow,
-          onOpen: here(),
-          minDate: dd,
-          maxDate: new Date(topMaxDate),
-          setDefaultDate: true,
-          autoClose: true,
-          onSelect: d2 => {
-            endDate = lastDate.date
-            getDays()
-            test()
-          }
-        });
+  function here() {
+    if (nextDay !== '') {
+      dd = nextDay
+      console.log(dd, 'dd if')
+      return dd
+    }
+    else {
+      dd = tomorrow
+      console.log(dd, 'dd else')
+      return dd
+    }
+  }
+  var topMaxDate = new Date().setDate(today.getDate() + 90);
+  var lastDate = M.Datepicker.init(end_dateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: tomorrow,
+    onOpen: here(),
+    minDate: dd,
+    maxDate: new Date(topMaxDate),
+    setDefaultDate: true,
+    autoClose: true,
+    onSelect: d2 => {
+      endDate = lastDate.date
+      getDays()
+      test()
+    }
+  });
 
-        var oneDay = 1000 * 60 * 60 * 24;
-        var dateDiff = ''
-        var diffTime = ''
-        var diffDays = ''
-        var totalDays = ''
-        function getDays() {
-          totalDays = Math.round(Math.abs((endDate - startDate) / oneDay));
-          console.log(totalDays, 'totalDays!!')
-          console.log(startDate)
-          console.log(endDate)
-        }
+  var oneDay = 1000 * 60 * 60 * 24;
+  var dateDiff = ''
+  var diffTime = ''
+  var diffDays = ''
+  var totalDays = ''
+  function getDays() {
+    totalDays = Math.round(Math.abs((endDate - startDate) / oneDay));
+    console.log(totalDays, 'totalDays!!')
+    console.log(startDate)
+    console.log(endDate)
+  }
 
-        function test() {
-          console.log(totalDays, 'check!!')
-        }
+  function test() {
+    console.log(totalDays, 'check!!')
+  }
 
-        // add additional JS to initialize select below
-        var selectEl = document.getElementById('id_insurance');
-        M.FormSelect.init(selectEl);
+  // add additional JS to initialize select below
+  var selectEl = document.getElementById('id_insurance');
+  M.FormSelect.init(selectEl);
 </script>
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 
 {% endblock %}

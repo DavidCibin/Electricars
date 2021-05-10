@@ -37,9 +37,11 @@ INSURANCE = (
 )
 
 class Booking(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  car = models.ForeignKey(Car, on_delete=models.CASCADE)
   start_date = models.DateField()
   end_date = models.DateField()
-  total = models.DecimalField(max_digits=6, decimal_places=2)
+  total = models.DecimalField(max_digits=6, decimal_places=2, default='') #default={self.car.price}
   insurance = models.CharField(
     max_length=1,
     # add the 'choices' field option
@@ -50,26 +52,20 @@ class Booking(models.Model):
 
   # how to get the booking id??????????
   def get_absolute_url(self):
-    return reverse('booking', kwargs={'booking_id': self.booking.id})
+    return reverse('booking', kwargs={'booking_id': self.id})
 
 
-  car = models.ForeignKey(Car, on_delete=models.CASCADE)
 
   def __str__(self):
     # Nice method for obtaining the friendly value of a Field.choice
-    return f"{self.get_insurance_display()} P/U {self.start_date} - D/O {self.start_date}"
+    return f"{self.id} P/U {self.start_date} - D/O {self.start_date}"
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(
-        User,
-        on_delete=models.CASCADE,
-        primary_key=True,
-    )
-    # admin view
-    bio = models.CharField(max_length=100, help_text='bbbbio')
-    Address1 = models.CharField(max_length=100, help_text='Address 1')
-    Address2 = models.CharField(max_length=100, help_text='Address 2')
+    # # admin view only???
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True,)
+    address1 = models.CharField(max_length=100, help_text='Address 1')
+    address2 = models.CharField(max_length=100, help_text='Address 2', null=True, blank=True)
     city = models.CharField(max_length=100, help_text='city')
     state = models.CharField(max_length=2, help_text='state')
     zipcode = models.CharField(max_length=5, help_text='zipcode')

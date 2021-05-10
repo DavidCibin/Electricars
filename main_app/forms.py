@@ -8,9 +8,6 @@ from .models import Booking
 
 
 class SignUpForm(UserCreationForm):
-    bio = forms.CharField(max_length=100, help_text='biiiio')
-
-
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email', 'password1', 'password2',)
@@ -23,6 +20,6 @@ class BookingForm(ModelForm):
     fields = ['start_date', 'end_date', 'total', 'insurance']
 
 class ProfileForm(ModelForm):
-    class Meta:
-        model = Profile
-        fields = ['Address1', 'Address2', 'city', 'state', 'zipcode']    
+  class Meta:
+    model = Profile
+    fields = ['address1', 'address2', 'city', 'state', 'zipcode']    

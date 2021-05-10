@@ -15,7 +15,7 @@ from .forms import ProfileForm
 
 # Create your views here.
 
-S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
+S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
 BUCKET = 'electricar'
 def add_photo(request, car_id):
   # photo-file will be the "name" attribute on the <input type="file">
@@ -36,12 +36,6 @@ def add_photo(request, car_id):
       print('An error occurred uploading file to S3: %s' % err)
   return redirect('detail', car_id=car_id)
 
-# Define the home view
-def home(request):
-  return render(request, 'home.html')
-
-def about(request):
-  return render(request, 'about.html')
 
 def signup(request):
   error_message = ''
@@ -57,7 +51,6 @@ def signup(request):
       user.profile.first_name = form.cleaned_data.get('first_name')
       user.profile.last_name = form.cleaned_data.get('last_name')
       user.profile.email = form.cleaned_data.get('email')
-      user.profile.bio = form.cleaned_data.get('biooo')
       user.save()
       # username = form.cleaned_data.get('username')
       # password = form.cleaned_data.get('password1')
@@ -80,10 +73,11 @@ def cars_index(request):
 
 def cars_detail(request, car_id):
   car = Car.objects.get(id=car_id)
+  profile_form = ProfileForm()
   booking_form = BookingForm()
-  profile__form = ProfileForm()
 
-  return render(request, 'cars/detail.html', { 'car': car, 'booking_form': booking_form, 'profile__form': profile__form })
+  return render(request, 'cars/detail.html', { 'car': car, 'booking_form': booking_form, 'profile_form': profile_form })
+
 
 def add_profile(request, car_id):
   # create a ModelForm instance using the data in request.POST
@@ -106,6 +100,7 @@ def add_booking(request, car_id):
     # has the car_id assigned
     new_booking = form.save(commit=False)
     new_booking.car_id = car_id
+    new_booking.user_id = request.user.id
     new_booking.save()
   return redirect('detail', car_id=car_id)
 
@@ -126,3 +121,10 @@ class CarDelete(DeleteView):
 def account(request):
   # car = User.objects.get(user=user)
   return render(request, 'accounts/profile.html')
+
+# Define the home view
+def home(request):
+  return render(request, 'home.html')
+
+def about(request):
+  return render(request, 'about.html')
