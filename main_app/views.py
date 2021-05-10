@@ -131,11 +131,22 @@ def addbooking(request, car_id):
 #     new_booking.user_id = request.user.id
 #     new_booking.save()
 #   return redirect('detail', car_id=car_id)
-
 class CarCreate(CreateView):
   model = Car
-  fields = '__all__'
-  success_url = '/cars/'
+  fields = ['make', 'model', 'passengers', 'luggage', 'erange', 'price']
+  
+  # This inherited method is called when a
+  # valid lizard form is being submitted
+  def form_valid(self, form):
+    # Assign the logged in user (self.request.user)
+    form.instance.user = self.request.user  # form.instance is the lizard
+    # Let the CreateView do its job as usual
+    return super().form_valid(form)
+
+# class CarCreate(CreateView):
+#   model = Car
+#   fields = '__all__'
+#   success_url = '/cars/'
 
 class CarUpdate(UpdateView):
   model = Car
