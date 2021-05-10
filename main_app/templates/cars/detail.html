@@ -57,16 +57,10 @@
     <p id="total" type="number" value="{{ car.price }}">Total ${{ carprice }}</p>
     {% endwith %}
     <div>
-      <form action="{% url 'add_booking' car.id %}" method="POST">
+      <form action="{% url 'addbooking' car.id %}" method="POST">
         {% csrf_token %}
         {{ booking_form.as_p }}
         {{ profile_form.as_p }}
-        <!-- <input id="address1" type="text" name="address1">
-        <input id="address2" type="text" name="address2">
-        <input id="city" type="text" name="city">
-        <input id="state" type="text" name="state">
-        <input id="zipcode" type="text" name="zipcode"> -->
-
         <input type="submit" class="btn" value="Add booking">
         <!-- new code above -->
         <table class="striped">
@@ -98,9 +92,9 @@
     <tbody>
       {% for booking in car.booking_set.all %}
       <tr>
-        <td>res{{booking.id}}</td>
+        <td>rEs{{booking.id}}</td>
         <td>{{user.first_name}} {{user.last_name}}</td>
-        <td>{{user.profile.bio}}</td>
+        <td>{{user.profile.zipcode}}</td>
         <td>{{user.email}}</td>
         <td>{{booking.start_date}} </td>
         <td>{{booking.end_date}} </td>

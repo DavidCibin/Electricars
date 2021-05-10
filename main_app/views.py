@@ -66,43 +66,71 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
-# cars index view
+# cars index view ##################################################
 def cars_index(request):
   cars = Car.objects.all()
   return render(request, 'cars/index.html', { 'cars': cars })
 
+# cars details view ##################################################
 def cars_detail(request, car_id):
   car = Car.objects.get(id=car_id)
   profile_form = ProfileForm()
   booking_form = BookingForm()
-
+  
   return render(request, 'cars/detail.html', { 'car': car, 'booking_form': booking_form, 'profile_form': profile_form })
 
 
-def add_profile(request, car_id):
-  # create a ModelForm instance using the data in request.POST
-  form = ProfileForm(request.POST)
-  # validate the form
-  if form.is_valid():
-    # don't save the form to the db until it
-    # has the car_id assigned
-    new_profile = form.save(commit=False)
-    new_profile.car_id = car_id
-    new_profile.save()
-  return redirect('detail', car_id=car_id)
+def addbooking(request, car_id): 
+  if request.method == 'POST':
+    
+    profile_form = ProfileForm(request.POST)
+    booking_form = BookingForm(request.POST)
+    print(request.POST)
+    if profile_form.is_valid() or booking_form.is_valid(): 
+      # do stuff here
+      # form = ProfileForm(request.POST)
+        new_profile = profile_form.save(commit=False)
+        new_profile.car_id = car_id
+        new_profile.user_id = request.user.id
+        new_profile.save()
+      # do stuff here
+      # form = BookingForm(request.POST)
+        new_booking = booking_form.save(commit=False)
+        new_booking.car_id = car_id
+        new_booking.user_id = request.user.id
+        new_booking.save()
+    return redirect('detail', car_id=car_id)
+  
+  else:
+    profile_form = ProfileForm(prefix="profile_form")
+    booking_form = BookingForm(prefix="booking_form")
 
-def add_booking(request, car_id):
-  # create a ModelForm instance using the data in request.POST
-  form = BookingForm(request.POST)
-  # validate the form
-  if form.is_valid():
-    # don't save the form to the db until it
-    # has the car_id assigned
-    new_booking = form.save(commit=False)
-    new_booking.car_id = car_id
-    new_booking.user_id = request.user.id
-    new_booking.save()
-  return redirect('detail', car_id=car_id)
+
+
+# def add_profile(request, car_id):
+#   # create a ModelForm instance using the data in request.POST
+#   form = ProfileForm(request.POST)
+#   # validate the form
+#   if form.is_valid():
+#     # don't save the form to the db until it
+#     # has the car_id assigned
+#     new_profile = form.save(commit=False)
+#     new_profile.car_id = car_id
+#     new_profile.save()
+#   return redirect('detail', car_id=car_id)
+
+# def add_booking(request, car_id):
+#   # create a ModelForm instance using the data in request.POST
+#   form = BookingForm(request.POST)
+#   # validate the form
+#   if form.is_valid():
+#     # don't save the form to the db until it
+#     # has the car_id assigned
+#     new_booking = form.save(commit=False)
+#     new_booking.car_id = car_id
+#     new_booking.user_id = request.user.id
+#     new_booking.save()
+#   return redirect('detail', car_id=car_id)
 
 class CarCreate(CreateView):
   model = Car
