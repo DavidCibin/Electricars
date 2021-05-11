@@ -18,6 +18,11 @@ class BookingForm(ModelForm):
   class Meta:
     model = Booking
     fields = ['start_date', 'end_date', 'total', 'insurance']
+    widgets = {
+        'start_date': forms.TextInput(attrs={'readonly': 'readonly'}),
+        'end_date': forms.TextInput(attrs={'readonly': 'readonly'}),
+        'total': forms.TextInput(attrs={'readonly': 'readonly'}),
+    }
 
 class ProfileForm(ModelForm):
   class Meta:

@@ -41,7 +41,7 @@ class Booking(models.Model):
   car = models.ForeignKey(Car, on_delete=models.CASCADE)
   start_date = models.DateField()
   end_date = models.DateField()
-  total = models.DecimalField(max_digits=6, decimal_places=2, default='') #default={self.car.price}
+  total = models.DecimalField(max_digits=6, decimal_places=2)
   insurance = models.CharField(
     max_length=1,
     # add the 'choices' field option

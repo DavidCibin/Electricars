@@ -6,6 +6,12 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
+<script>function myFieldOnChange() {
+    var myField = document.getElementById("id_total")
+    myField.setAttribute('readonly', true)
+  }
+</script>
+
 <h1>Car Details</h1>
 
 <div class="card" style="max-width: 1000px;">
@@ -200,49 +206,36 @@
     function (start, end) {
       $("#id_start_date").val(start.format('YYYY-MM-DD'));
       $("#id_end_date").val(end.format('YYYY-MM-DD'));
-      console.log(iniValue)
-      console.log(coverageStatus)
       totalDays = Math.round(Math.abs((end._d - start._d) / oneDay));
       coverageStatus ? coverageValue = 20 * (totalDays - 1) : coverageValue = 0
       finalValue = +(coverageValue + ((totalDays - 1) * iniValue)).toFixed(2)
-      console.log(coverageValue, 'coverageValue in datepicker')
-      document.getElementById("id_total").value = finalValue;
-      console.log(finalValue, 'finalValue value')
-
+      document.getElementById("id_total").value = finalValue.toFixed(2);
     }
   );
   $('#start_date').on("change", function () {
     console.log("changes");
   });
 
-
-  // add additional JS to initialize select below
+  // JS for the insurance dropadown and calculate the insurance cost
   var selectEl = document.getElementById('id_insurance');
   M.FormSelect.init(selectEl);
 
-
   selectEl.addEventListener('change', (event) => {
     if (selectEl.value === "F") {
-      console.log(totalDays, 'if!!')
       coverageValue = (20 * (totalDays - 1))
       coverageStatus = true
-      console.log(coverageValue, 'covarageValue full coverage')
       finalValue = (finalValue + coverageValue)
-      console.log(finalValue, 'finalValue with coverageValue')
       document.getElementById("id_total").value = finalValue.toFixed(2);
     }
     else {
-      console.log(totalDays, 'else!!')
       coverageValue = (20 * (totalDays - 1))
-      console.log(coverageValue, 'covarageValue no coverage antes')
       finalValue = (finalValue - coverageValue)
       coverageValue = 0
       coverageStatus = false
-      console.log(coverageValue, 'covarageValue no coverage depois')
-      console.log(finalValue, 'final Value no coverage')
       document.getElementById("id_total").value = finalValue.toFixed(2);
     }
   });
+
 
 </script>
 
