@@ -158,12 +158,12 @@
       test()
     }
   });
-  
+
   var oneDay = 1000 * 60 * 60 * 24;
   var dateDiff = ''
   var diffTime = ''
   var diffDays = ''
-  // var totalDays = 2
+  var totalDays = 2
   function getDays() {
     totalDays = Math.round(Math.abs((endDate - startDate) / oneDay));
     console.log(totalDays, 'totalDays!!')
@@ -174,14 +174,20 @@
   function test() {
     console.log(totalDays, 'check!!')
   }
-  
+
+  let coverageStatus = false
+  let coverageValue = 0
   const d1 = new Date().setDate(today.getDate() + 5);
   const d2 = new Date().setDate(today.getDate() + 6);
+  const dropDown = document.getElementsByClassName('dropdown-content')
+  console.log(dropDown, 'dropDown!!')
   let iniValue = +(document.getElementById('price').innerHTML).replace("$", "").split("<", 1);
   let finalValue = document.getElementById('id_total');
-  document.getElementById("id_total").value = iniValue;
-  console.log(iniValue)
-  console.log(finalValue)
+  finalValue = iniValue
+  console.log(finalValue, 'initial finalValue')
+  document.getElementById("id_total").value = iniValue.toFixed(2);
+  console.log(iniValue, 'very first')
+  // console.log(+(finalValue.value), 'initial finalValue')
 
   $('input[id="range"]').daterangepicker({
     "autoApply": true,
@@ -191,26 +197,53 @@
     "maxDate": new Date(topMaxDate),
   },
 
-    function(start, end) {
-              $("#id_start_date").val(start.format('YYYY-MM-DD'));
-              $("#id_end_date").val(end.format('YYYY-MM-DD'));
-              console.log(iniValue)
-              totalDays = Math.round(Math.abs((end._d - start._d) / oneDay));
-              finalValue = +((totalDays - 1) * iniValue).toFixed(2)
-              finalValue.value = finalValue
-              document.getElementById("id_total").value = finalValue;
-              console.log(finalValue.value, 'finalValue value')
-              
-        }
-      );
-    $('#start_date').on("change", function(){
-        console.log("changes");
-    });
+    function (start, end) {
+      $("#id_start_date").val(start.format('YYYY-MM-DD'));
+      $("#id_end_date").val(end.format('YYYY-MM-DD'));
+      console.log(iniValue)
+      console.log(coverageStatus)
+      totalDays = Math.round(Math.abs((end._d - start._d) / oneDay));
+      coverageStatus ? coverageValue = 20 * (totalDays - 1) : coverageValue = 0
+      finalValue = +(coverageValue + ((totalDays - 1) * iniValue)).toFixed(2)
+      console.log(coverageValue, 'coverageValue in datepicker')
+      document.getElementById("id_total").value = finalValue;
+      console.log(finalValue, 'finalValue value')
+
+    }
+  );
+  $('#start_date').on("change", function () {
+    console.log("changes");
+  });
 
 
   // add additional JS to initialize select below
   var selectEl = document.getElementById('id_insurance');
   M.FormSelect.init(selectEl);
+
+
+  selectEl.addEventListener('change', (event) => {
+    if (selectEl.value === "F") {
+      console.log(totalDays, 'if!!')
+      coverageValue = (20 * (totalDays - 1))
+      coverageStatus = true
+      console.log(coverageValue, 'covarageValue full coverage')
+      finalValue = (finalValue + coverageValue)
+      console.log(finalValue, 'finalValue with coverageValue')
+      document.getElementById("id_total").value = finalValue.toFixed(2);
+    }
+    else {
+      console.log(totalDays, 'else!!')
+      coverageValue = (20 * (totalDays - 1))
+      console.log(coverageValue, 'covarageValue no coverage antes')
+      finalValue = (finalValue - coverageValue)
+      coverageValue = 0
+      coverageStatus = false
+      console.log(coverageValue, 'covarageValue no coverage depois')
+      console.log(finalValue, 'final Value no coverage')
+      document.getElementById("id_total").value = finalValue.toFixed(2);
+    }
+  });
+
 </script>
 
 {% endblock %}
