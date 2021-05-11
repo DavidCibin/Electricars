@@ -176,10 +176,10 @@
   }
   
   const d1 = new Date().setDate(today.getDate() + 5);
-  const d2 = new Date().setDate(today.getDate() + 7);
+  const d2 = new Date().setDate(today.getDate() + 6);
   let iniValue = +(document.getElementById('price').innerHTML).replace("$", "").split("<", 1);
   let finalValue = document.getElementById('id_total');
-  // iniValue = parseFloat(iniValue) * 2.72
+  document.getElementById("id_total").value = iniValue;
   console.log(iniValue)
   console.log(finalValue)
 
@@ -198,6 +198,7 @@
               totalDays = Math.round(Math.abs((end._d - start._d) / oneDay));
               finalValue = +((totalDays - 1) * iniValue).toFixed(2)
               finalValue.value = finalValue
+              document.getElementById("id_total").value = finalValue;
               console.log(finalValue.value, 'finalValue value')
               
         }
