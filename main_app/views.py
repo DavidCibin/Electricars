@@ -86,7 +86,7 @@ def addbooking(request, car_id):
     profile_form = ProfileForm(request.POST)
     booking_form = BookingForm(request.POST)
     print(request.POST)
-    if profile_form.is_valid() or booking_form.is_valid(): 
+    if booking_form.is_valid() or profile_form.is_valid(): 
       # do stuff here
       # form = ProfileForm(request.POST)
         new_profile = profile_form.save(commit=False)
@@ -157,9 +157,19 @@ class CarDelete(DeleteView):
   model = Car
   success_url = '/cars/'
 
+class ProfileUpdate(UpdateView):
+  model = Profile
+  # Let's disallow the renaming of a car by excluding the name field!
+  fields = ['address1', 'address2', 'city', 'state', 'zipcode', ]
+  success_url = '/accounts/'
+
+# def cars_index(request):
+#   return render(request, 'cars/index.html', { 'cars': cars })
+
 def account(request):
   # car = User.objects.get(user=user)
-  return render(request, 'accounts/profile.html')
+  profile = Profile.objects.all()
+  return render(request, 'accounts/profile.html', { 'profile': profile })
 
 # Define the home view
 def home(request):

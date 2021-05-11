@@ -25,4 +25,7 @@ urlpatterns = [
 
   # route for booking and profile form
   path('cars/<int:car_id>/addbooking/', views.addbooking, name='addbooking'),
+
+  # route to update profile
+  path('accounts/<int:pk>/update/', views.ProfileUpdate.as_view(), name='accounts_update'),
 ]

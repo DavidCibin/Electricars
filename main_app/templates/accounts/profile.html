@@ -1,8 +1,17 @@
-<h1>
-  {{user}}
-  {{user.email}}
-  {{user.profile.bio}}
-  {{user.bio}}
-  {{user.first_name}}
-  {{user.last_name}}
-</h1>
+{% extends 'base.html' %}
+{% block content %}
+<ul style="list-style-type:square">
+  <li>{{ user.first_name}}</li>
+  <li>{{ user.last_name}}</li>
+  <li>{{ user.email}}</li>
+  <li>{{ user.profile.address1}}</li>
+  <li>{{ user.profile.address2}}</li>
+  <li>{{ user.profile.city}}</li>
+  <li>{{ user.profile.state}}</li>
+  <li>{{ user.profile.zipcode}}</li>
+</ul>
+<div class="card-action">
+  <a href="{% url 'accounts_update' user.id %}">Edit</a>
+</div>
+
+{% endblock %}
