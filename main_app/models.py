@@ -58,7 +58,7 @@ class Booking(models.Model):
 
   def __str__(self):
     # Nice method for obtaining the friendly value of a Field.choice
-    return f"Reservation rEs{self.id} P/U {self.start_date} - D/O {self.start_date}"
+    return f"Reservation: rEs{self.id}"
 
 
 class Profile(models.Model):

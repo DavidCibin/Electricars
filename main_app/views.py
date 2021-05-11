@@ -86,7 +86,7 @@ def addbooking(request, car_id):
     profile_form = ProfileForm(request.POST)
     booking_form = BookingForm(request.POST)
     print(request.POST)
-    if booking_form.is_valid() or profile_form.is_valid(): 
+    if profile_form.is_valid(): 
       # do stuff here
       # form = ProfileForm(request.POST)
         new_profile = profile_form.save(commit=False)
@@ -94,6 +94,7 @@ def addbooking(request, car_id):
         new_profile.user_id = request.user.id
         new_profile.save()
       # do stuff here
+    if booking_form.is_valid():   
       # form = BookingForm(request.POST)
         new_booking = booking_form.save(commit=False)
         new_booking.car_id = car_id
