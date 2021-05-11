@@ -40,7 +40,7 @@
     <p>Passenger: {{ car.passengers }}</p>
     <p>Luggage: {{ car.luggage }}</p>
     <p>Range: {{ car.erange }} miles</p>
-    <p id="price" type="number" value="{{ car.price }}">${{ car.price }} per/day</p>
+    <p id="price" type="number" value="{{ car.price }}">${{ car.price }}<span> per/day</span></p>
 
     {% with carprice=car.price %}
     <p id="total" type="number" value="{{ car.price }}">Total ${{ carprice }}</p>
@@ -158,31 +158,12 @@
       test()
     }
   });
-
-  const d1 = new Date().setDate(today.getDate() + 5);
-  const d2 = new Date().setDate(today.getDate() + 7);
-  $('input[id="range"]').daterangepicker({
-    "autoApply": true,
-    "startDate": new Date(d1),
-    "endDate": new Date(d2),
-    "minDate": new Date(),
-    "maxDate": new Date(topMaxDate),
-
-
-    function(start, end, label) {
-      console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-    }
-  });
-  $('#daterange').on('cancel.daterangepicker', function chng() {
-    console.log('New date range selected')
-    // $('#daterange').val('');
-  });
-
+  
   var oneDay = 1000 * 60 * 60 * 24;
   var dateDiff = ''
   var diffTime = ''
   var diffDays = ''
-  var totalDays = ''
+  // var totalDays = 2
   function getDays() {
     totalDays = Math.round(Math.abs((endDate - startDate) / oneDay));
     console.log(totalDays, 'totalDays!!')
@@ -193,6 +174,38 @@
   function test() {
     console.log(totalDays, 'check!!')
   }
+  
+  const d1 = new Date().setDate(today.getDate() + 5);
+  const d2 = new Date().setDate(today.getDate() + 7);
+  let iniValue = +(document.getElementById('price').innerHTML).replace("$", "").split("<", 1);
+  let finalValue = document.getElementById('id_total');
+  // iniValue = parseFloat(iniValue) * 2.72
+  console.log(iniValue)
+  console.log(finalValue)
+
+  $('input[id="range"]').daterangepicker({
+    "autoApply": true,
+    "startDate": new Date(d1),
+    "endDate": new Date(d2),
+    "minDate": new Date(),
+    "maxDate": new Date(topMaxDate),
+  },
+
+    function(start, end) {
+              $("#id_start_date").val(start.format('YYYY-MM-DD'));
+              $("#id_end_date").val(end.format('YYYY-MM-DD'));
+              console.log(iniValue)
+              totalDays = Math.round(Math.abs((end._d - start._d) / oneDay));
+              finalValue = +((totalDays - 1) * iniValue).toFixed(2)
+              finalValue.value = finalValue
+              console.log(finalValue.value, 'finalValue value')
+              
+        }
+      );
+    $('#start_date').on("change", function(){
+        console.log("changes");
+    });
+
 
   // add additional JS to initialize select below
   var selectEl = document.getElementById('id_insurance');
