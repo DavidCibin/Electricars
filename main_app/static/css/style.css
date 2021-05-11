@@ -647,26 +647,41 @@ header .navbar {
 /* Footer */
 
 footer {
-	position: fixed;
-  margin-top: 20px;
-  bottom: 0;
-  width: 100%;
-  height: 163px;
+	position: fixed !important;;
+  margin-top: 20px !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 163px !important;
+}
+
+.bg-dark {
+    padding-bottom: 185px !important;
 }
 
 .form-outline .form-control {
-  border: 2px solid white;
+  border: 1px solid white !important;
+}
+.form-outline.form-white .form-control {
+    color: #fff;
+    border-radius: 5px !important;
+    height: 35px !important;
 }
 .p-3 {
-  padding: 1rem!important;
-  display: flex;
+  padding: 1rem !important;
+  display: flex !important;
   align-items: center!important;
-  justify-content: center;
-  margin: 0 auto;
-  gap: 20px;
+  justify-content: center !important;
+  margin: 0 auto !important;
+  gap: 20px !important;
 }
 .footer-icons {
-  font-size: 20px;
+  font-size: 19px !important;
+}
+/* .fab .fa-github .fa-linkedin {
+	padding-top: 5px !important;
+} */
+.btn-floating, [class*=btn-outline-].btn-floating {
+    padding: 4px !important
 }
 
 
