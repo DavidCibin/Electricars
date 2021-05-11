@@ -60,9 +60,9 @@
       <form action="{% url 'addbooking' car.id %}" method="POST">
         {% csrf_token %}
         {{ booking_form.as_p }}
-        <!-- {% if not user.profile.zipcode %} -->
+        
           {{ profile_form.as_p }}
-        <!-- {% endif %} -->
+        
         <input type="submit" class="btn" value="Add booking">
       </form>
     </div>

@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
-
+from phone_field import PhoneField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -64,8 +64,8 @@ class Booking(models.Model):
 class Profile(models.Model):
     # # admin view only???
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True,)
+    phone = PhoneField(blank=True, help_text='Phone number')
     address1 = models.CharField(max_length=100, help_text='Address 1')
-    address2 = models.CharField(max_length=100, help_text='Address 2', null=True, blank=True)
     city = models.CharField(max_length=100, help_text='city')
     state = models.CharField(max_length=2, help_text='state')
     zipcode = models.CharField(max_length=5, help_text='zipcode')

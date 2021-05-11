@@ -22,4 +22,4 @@ class BookingForm(ModelForm):
 class ProfileForm(ModelForm):
   class Meta:
     model = Profile
-    fields = ['address1', 'address2', 'city', 'state', 'zipcode']    
+    fields = ['phone', 'address1', 'city', 'state', 'zipcode']    

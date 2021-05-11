@@ -160,7 +160,7 @@ class CarDelete(DeleteView):
 class ProfileUpdate(UpdateView):
   model = Profile
   # Let's disallow the renaming of a car by excluding the name field!
-  fields = ['address1', 'address2', 'city', 'state', 'zipcode', ]
+  fields = ['phone', 'address1', 'city', 'state', 'zipcode', ]
   success_url = '/accounts/'
 
 # def cars_index(request):

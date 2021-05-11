@@ -19,6 +19,8 @@ body {
 	padding-top: 90px;
  }
 
+ .phone-field-ext { display: none !important; }
+#id_phone_1 { display: none !important; }
 p {
 	margin-bottom: 0px;
 	font-size: 14px;
