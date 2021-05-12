@@ -1,27 +1,86 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+
 <div class="container">
-<h1>Car List</h1>
+  <h1>Car List</h1>
 
-{% for car in cars %}
-<div class="card">
-  <!-- add this single line below -->
-  <a href="{% url 'detail' car.id %}">
-    <div class="card-content">
-      <span class="card-title">{{ car.make }}</span>
-      <p>Model: {{ car.model }}</p>
-      <p>Passenger: {{ car.passengers }}</p>
-      {% if car.luggage > 0 %}
-        <p>Luggage: {{ car.luggage }}</p>
-      {% else %}
-        <p>Luggage: Kitten</p>
-      {% endif %}
+  <div id="my-row">
+    {% for car in cars %}
+    {% if car.luggage > 0 %}
+    <div id="mycolumn" class="card" style="width: 300px,;">
+      <div class="card-image">
+        {% for photo in car.photo_set.all %}
+        <img class="card-img-top img-fit" src="{{photo.url}}">
+        {% endfor %}
+        <h3 class="index-card-title">{{ car.make }} {{ car.model }}</h3>
+      </div>
+      <div class="card-content">
+        <p class="card-text">Passengers:
+          <span class="passenger">
+            {% if car.passengers == 1 %}
+            <i class="fas fa-user"></i>
+            {% elif car.passengers == 2 %}
+            <i class="fas fa-user"></i> <i class="fas fa-user"></i>
+            {% elif car.passengers == 3 %}
+            <i class="fas fa-user"></i> <i class="fas fa-user"></i> <i class="fas fa-user"></i>
+            {% elif car.passengers == 4 %}
+            <i class="fas fa-user"></i> <i class="fas fa-user"></i> <i class="fas fa-user"></i> <i
+              class="fas fa-user"></i>
+            {% elif car.passengers == 5 %}
+            <i class="fas fa-user"></i> <i class="fas fa-user"></i> <i class="fas fa-user"></i> <i
+              class="fas fa-user"></i> <i class="fas fa-user"></i>
+            {% endif %}
+          </span>
+        </p>
+        <p class="card-text">Luggage:
+          <span class="luggage">
+            {% if car.luggage == 1 %}
+            🧳
+            {% elif car.luggage == 2 %}
+            🧳 🧳
+            {% elif car.luggage == 3 %}
+            🧳 🧳 🧳
+            {% elif car.luggage == 4 %}
+            🧳 🧳 🧳 🧳
+            {% endif %}
+            <span class="suitcase">
+              {% if car.suitcase == 1 %}
+              💼
+              {% elif car.suitcase == 2 %}
+              💼 💼
+              {% elif car.suitcase == 3 %}
+              💼 💼 💼
+              {% elif car.suitcase == 4 %}
+              💼 💼 💼 💼
+              {% endif %}
+            </span>
+          </span>
+        </p>
+        <p class="card-text">Range p/ charge: {{ car.erange }} miles</p>
+        <p style="font-weight: bold;">${{ car.price }} per/day</p>
+        <a href="{% url 'detail' car.id %}" class="btn-book">Book Now</a>
+      </div>
     </div>
-  <!-- and this following one as well -->
-  </a>
-</div>
-{% endfor %}
+    {% else %}
 
-</div>
-{% endblock %}
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="card">
+          <div class="card-image">
+            <img class="card-img-top" src="https://i.ibb.co/TbQNcvH/nocar.webp" alt="nocar" border="0">
+            <span class="card-title">No Cars Added Yet!</span>
+            <a href="{% url 'cars_create' %}" class="btn-floating halfway-fab waves-effect waves-light red"><i
+                class="material-icons">+</i></a>
+          </div>
+          <div class="card-content">
+            <p>Click the + now to add a car!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+
+  {% endblock %}

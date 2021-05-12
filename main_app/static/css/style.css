@@ -18,6 +18,59 @@ body {
 	padding-bottom: 200px; /* height of your footer */
 	padding-top: 90px;
 }
+
+#my-row {
+    display: grid;
+    /* column-gap: 75px; */
+    grid-template-columns: 1fr 1fr 1fr;
+}
+@media (max-width: 1070PX) {
+	#my-row {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+@media (max-width: 770PX) {
+	#my-row {
+		grid-template-columns: 1fr;
+	}
+}
+
+#my-row:after {
+	content: "";
+	display: table !important;
+	clear: both !important;
+  }
+#mycolumn {
+    float: left !important;
+    min-width: 300px !important;
+	max-width: 400px !important;
+    padding: 10px !important;
+    margin: 20px;
+}
+.btn-book:hover {
+	background: #016401;
+	color: #dceeff;
+}
+.btn-book {
+    font-weight: 400;
+    color: #212529;
+	background: #00cc00;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+	margin-top: 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+	float: right;
+	box-shadow: 0 0 5px grey;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
  
 .phone-field-ext { display: none !important; }
 #id_phone_1 { display: none !important; }
@@ -79,6 +132,17 @@ p#total.card-text {
 }
 #total {
     font-weight: bolder;
+}
+.plus-sign {
+    margin: -4px -4px !important;
+}
+.plus-sign-circle {
+	margin: -4px -4px !important;
+	font-weight: 900;
+}
+.index-card-title {
+    margin-left: 15px;
+	margin-top: 10px;
 }
 
 p {
@@ -384,17 +448,18 @@ header .navbar {
 }
 .card-left {
 	grid-area: box1;
-	margin-left: 50px;
+	justify-self: center;
+	align-self: center;
 }
 .card-center {
 	grid-area: box2;
-	margin-left: 50px;
-	margin-top: 20px;
+	justify-self: center;
+	align-self: center;
 }
 .card-right {
 	grid-area: box3;
-	margin-left: 30px;
-	margin-top: 20px;
+	justify-self: center;
+	align-self: center;
 }
 
 .card-img-top {
@@ -410,9 +475,10 @@ header .navbar {
 			"box2 box3"
 	}
 	.card-left {
-		background: red;
 		grid-area: box1;
-		justify-self: center;
+	}
+	.navbar .navbar-brand h2 {
+		color: #000;
 	}
 }
 @media (max-width: 550px) {
@@ -425,9 +491,10 @@ header .navbar {
 			"box3"
 	}
 	.card-left {
-		background: red;
 		grid-area: box1;
-		justify-self: center;
+	}
+	.navbar .navbar-brand h2 {
+		color: #000;
 	}
 }
 
@@ -1226,6 +1293,9 @@ footer {
 		position: absolute;
 		left: 30px;
 		top: 32px;
+	}
+	.navbar .navbar-brand h2 {
+		color: #000;
 	}
 	.navbar .navbar-brand {
 		width: auto;

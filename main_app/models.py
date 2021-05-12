@@ -65,11 +65,11 @@ class Booking(models.Model):
 class Profile(models.Model):
     # # admin view only???
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True,)
-    phone = PhoneField(blank=True, help_text='Phone number')
-    address1 = models.CharField(max_length=100, help_text='Address')
-    city = models.CharField(max_length=100, help_text='City')
-    state = models.CharField(max_length=2, help_text='State')
-    zipcode = models.CharField(max_length=5, help_text='Zip')
+    phone = PhoneField(blank=True)
+    address1 = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=2)
+    zipcode = models.CharField(max_length=5)
 
     def __str__(self):
       # Nice method for obtaining the friendly value of a Field.choice

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div class="container forms">
 <!-- New if/else block -->
   {% if object %}
     <h1>Edit <span class="teal-text">{{object.user.first_name}}'s Profile</span></h1>
@@ -18,4 +19,5 @@
     </table>
     <input type="submit" value="Submit!" class="btn">
   </form>
+</div> 
 {% endblock %}

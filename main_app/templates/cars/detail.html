@@ -17,12 +17,21 @@
 
 <div class="card" style="max-width: 1000px;">
   <div class="card-header">
+    {% if user.is_superuser %}
+    <div>
+      <div class="picker"></div>
+        <a class="btn btn-info" href="{% url 'cars_update' car.id %}">Edit</a>
+        <a class="btn btn-danger" href="{% url 'cars_delete' car.id %}">Delete</a>
+      </div>
+    </div>
+    {% else %}
     <div class="picker">
       <span class="range">Pick-Up</span>
       <input type="text" id="range" value="01/01/2018 | 01/15/2018" />
       <span class="range">Drop-Off</span>
     </div>
   </div>
+  {% endif %}
   <div class="detail-card">
     <div class="card-left">
       {% for photo in car.photo_set.all %}
@@ -83,11 +92,18 @@
   </div>
 </div>
 
-<div class="card-action">
-  <a class="btn" href="{% url 'cars_update' car.id %}">Edit</a>
-  <a class="btn" href="{% url 'cars_delete' car.id %}">Delete</a>
+{% if user.is_superuser %}
+
+<!-- Insert photo markup below this comment -->
+<form action="{% url 'add_photo' car.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+  {% csrf_token %}
+  <input type="file" name="photo-file">
+  <br><br>
+  <input type="submit" class="btn" value="Upload Photo">
+</form>
 </div>
 
+{% else %}
 <div class="card">
   <div class="card-content">
     <div>
@@ -104,15 +120,13 @@
 
   </div>
 </div>
-<td>?? {{user}}</td>
+
 <div class="col s6">
   <table class="striped">
     <thead>
       <tr>
         <th>Reservation</th>
         <th>Name</th>
-        <th>Bio</th>
-        <th>Drop-off</th>
         <th>Pick-up</th>
         <th>Drop-off</th>
         <th>Coverage</th>
@@ -124,27 +138,17 @@
       <tr>
         <td>rEs{{booking.id}}</td>
         <td>{{user.first_name}} {{user.last_name}}</td>
-        <td>{{user.profile.zipcode}}</td>
-        <td>{{user.email}}</td>
         <td>{{booking.start_date}} </td>
         <td>{{booking.end_date}} </td>
         <td>{{booking.get_insurance_display}} </td>
-        <td>{{booking.total}} </td>
+        <td>${{booking.total}} </td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
 </div>
 </div>
-
-<!-- Insert photo markup below this comment -->
-<form action="{% url 'add_photo' car.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
-  {% csrf_token %}
-  <input type="file" name="photo-file">
-  <br><br>
-  <input type="submit" class="btn" value="Upload Photo">
-</form>
-</div>
+{% endif %}
 
 <script>
 
