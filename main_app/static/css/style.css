@@ -137,6 +137,8 @@ a.filled-button:hover {
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	position:relative;
+	margin-top: -30px;
 }
 
 .page-heading .text-content h4 {
@@ -406,7 +408,7 @@ header .navbar {
 	position: relative;
 	text-align: center;
 	padding-top: 0;
-	margin-top: -10px;
+	margin-top: -30px;
 }
 
 .banner-item-01 {
@@ -773,10 +775,6 @@ footer {
 	padding: .5rem 1.5rem; 
 }
 
-.page-heading {
-	position:relative;
-	/* margin-top: -10px; */
-}
 .page-heading:before {
 	content:'';
 	position:absolute;
