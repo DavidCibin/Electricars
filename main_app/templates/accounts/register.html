@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% block title %}Create an Account{% endblock %}
-
-{% comment %} {% block content %} {% endcomment %}
+<div class="container">
+    <h1>Create an Account</h1>
+    {% comment %} {% block content %} {% endcomment %}
     <form method="POST" class="form-group">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-success">Register</button>
     </form>
-{% endblock %} 
+</div>
+{% endblock %}

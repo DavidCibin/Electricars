@@ -12,12 +12,16 @@
   }
 </script>
 
+<div class="container">
 <h1>Car Details</h1>
 
 <div class="card" style="max-width: 1000px;">
   <div class="card-header">
-    <input type="text" id="range" value="01/01/2018 - 01/15/2018" />
-
+    <div class="picker">
+      <span class="range">Pick-Up</span>
+      <input type="text" id="range" value="01/01/2018 | 01/15/2018" />
+      <span class="range">Drop-Off</span>
+    </div>
   </div>
   <div class="detail-card">
     <div class="card-left">
@@ -64,8 +68,8 @@
 
   </div>
   <div class="card-action">
-    <a href="{% url 'cars_update' car.id %}">Edit</a>
-    <a href="{% url 'cars_delete' car.id %}">Delete</a>
+    <a class="btn" href="{% url 'cars_update' car.id %}">Edit</a>
+    <a class="btn" href="{% url 'cars_delete' car.id %}">Delete</a>
   </div>
 </div>
 <td>?? {{user}}</td>
@@ -108,6 +112,7 @@
   <br><br>
   <input type="submit" class="btn" value="Upload Photo">
 </form>
+</div>
 
 <script>
 
@@ -120,6 +125,7 @@
     minDate: new Date(),
     yearRange: 1,
     setDefaultDate: true,
+    disablad: true,
     autoClose: true,
     onSelect: d1 => {
       startDate = firstDate.date
@@ -240,3 +246,4 @@
 </script>
 
 {% endblock %}
+

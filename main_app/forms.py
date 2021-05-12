@@ -19,8 +19,8 @@ class BookingForm(ModelForm):
     model = Booking
     fields = ['start_date', 'end_date', 'total', 'insurance']
     widgets = {
-        'start_date': forms.TextInput(attrs={'readonly': 'readonly'}),
-        'end_date': forms.TextInput(attrs={'readonly': 'readonly'}),
+        'start_date': forms.TextInput(attrs={'readonly': 'readonly','class':'pudate'}),
+        'end_date': forms.TextInput(attrs={'readonly': 'readonly','class':'dodate'}),
         'total': forms.TextInput(attrs={'readonly': 'readonly'}),
     }
 

@@ -2,15 +2,16 @@
 {% block content %}
 <div class="container forms">
   <h1>Sign Up</h1>
+  <div >
+    {% if error_message %}
+    <p class="red-text">{{ error_message }}</p>
+    {% endif %}
 
-  {% if error_message %}
-  <p class="red-text">{{ error_message }}</p>
-  {% endif %}
-
-  <form method="post" action="{% url 'signup' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" class="btn" value="signup">
-  </form>
+    <form id="sign-page" method="post" action="{% url 'signup' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" class="btn signup" value="signup">
+    </form>
+  </div>
 </div>
 {% endblock %}

@@ -16,11 +16,44 @@ body {
 	display: block;
 	position: relative;
 	padding-bottom: 200px; /* height of your footer */
-	padding-top: 70px;
+	padding-top: 90px;
 }
  
 .phone-field-ext { display: none !important; }
 #id_phone_1 { display: none !important; }
+
+#sign-page p {
+	line-height: 3px;
+}
+
+.picker {
+    margin: 0 auto;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #9e9e9e;
+    text-align: center;
+    border-radius: 5px;
+}
+#range {
+    width: auto;
+    border: none;
+    margin-bottom: 0px;
+    text-align-last: justify;
+    font-size: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+	background: #fff;
+}
+.range {
+    width: auto;
+    display: inline-table;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.pudate, .dodate {
+	pointer-events: none !important;
+}
 
 p {
 	margin-bottom: 0px !important;
@@ -253,12 +286,13 @@ header .navbar {
 .navbar .navbar-brand h2 {
 	color: #fff;
 	text-transform: uppercase;
-	font-size: 24px;
+	font-size: 26px;
 	font-weight: 700;
 	-webkit-transition: all .3s ease 0s;
     -moz-transition: all .3s ease 0s;
     -o-transition: all .3s ease 0s;
     transition: all .3s ease 0s;
+	margin-top: 12px;
 }
 .navbar .navbar-brand h2 em {
 	font-style: normal;
@@ -697,8 +731,10 @@ footer {
     padding: 4px !important
 }
 
-
-
+/* Buttons */
+.signup {
+	margin-top: 15px;
+}
 
 /* Product Page */
 
