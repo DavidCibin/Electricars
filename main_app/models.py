@@ -65,10 +65,10 @@ class Profile(models.Model):
     # # admin view only???
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True,)
     phone = PhoneField(blank=True, help_text='Phone number')
-    address1 = models.CharField(max_length=100, help_text='Address 1')
-    city = models.CharField(max_length=100, help_text='city')
-    state = models.CharField(max_length=2, help_text='state')
-    zipcode = models.CharField(max_length=5, help_text='zipcode')
+    address1 = models.CharField(max_length=100, help_text='Address')
+    city = models.CharField(max_length=100, help_text='City')
+    state = models.CharField(max_length=2, help_text='State')
+    zipcode = models.CharField(max_length=5, help_text='Zip')
 
     def __str__(self):
       # Nice method for obtaining the friendly value of a Field.choice

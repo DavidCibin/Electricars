@@ -15,19 +15,19 @@ body {
 	overflow: hidden;
 	display: block;
 	position: relative;
-	padding-bottom: 180px; /* height of your footer */
-	padding-top: 90px;
- }
-
+	padding-bottom: 200px; /* height of your footer */
+	padding-top: 70px;
+}
+ 
 .phone-field-ext { display: none !important; }
 #id_phone_1 { display: none !important; }
 
 p {
-	margin-bottom: 0px;
+	margin-bottom: 0px !important;
 	font-size: 14px;
 	font-weight: 300;
 	color: #4a4a4a;
-	line-height: 24px;
+	line-height: 20px;
 }
 a {
 	text-decoration: none!important;
@@ -64,12 +64,12 @@ ul.social-icons li a {
 }
 
 ul.social-icons li a:hover {
-	background-color: #f33f3f;
+	background-color: #00cc00;
 	color: #fff;
 }
 
 a.filled-button {
-	background-color: #f33f3f;
+	background-color: #00cc00;
 	color: #fff;
 	font-size: 14px;
 	text-transform: capitalize;
@@ -107,7 +107,7 @@ a.filled-button:hover {
 }
 
 .page-heading .text-content h4 {
-	color: #f33f3f;
+	color: #00cc00;
 	font-size: 22px;
 	text-transform: uppercase;
 	font-weight: 700;
@@ -123,7 +123,7 @@ a.filled-button:hover {
 
 #preloader {
   overflow: hidden;
-  background: #32393d;
+  background: #006d09;
   left: 0;
   right: 0;
   top: 0;
@@ -206,7 +206,7 @@ header {
 	position: absolute;
 	z-index: 99999;
 	width: 100%;
-	height: 80px;
+	/* height: 80px; */
 	background-color: #232323;
 	-webkit-transition: all 0.3s ease-in-out 0s;
     -moz-transition: all 0.3s ease-in-out 0s;
@@ -214,7 +214,14 @@ header {
     transition: all 0.3s ease-in-out 0s;
 }
 header .navbar {
-	padding: 15px 0px;
+	/* padding: 8px 0px; */
+	padding-bottom: 0px;
+}
+header .navbar {
+    /* padding: 0px 0; */
+    /* margin-top: 19px; */
+    /* border: 1px solid red; */
+    /* height: 60px; */
 }
 .background-header .navbar {
 	padding: 15px 0px;
@@ -236,7 +243,7 @@ header .navbar {
 .background-header .navbar-nav .nav-link.active,
 .background-header .navbar-nav .nav-link.show,
 .background-header .navbar-nav .show>.nav-link {
-	color: #f33f3f!important;
+	color: #00cc00!important;
 }
 .navbar .navbar-brand {
 	float: 	left;
@@ -255,7 +262,7 @@ header .navbar {
 }
 .navbar .navbar-brand h2 em {
 	font-style: normal;
-	color: #f33f3f;
+	color: #00cc00;
 }
 #navbarResponsive {
 	z-index: 999;
@@ -281,8 +288,8 @@ header .navbar {
 .navbar .navbar-nav .nav-link.show,
 .navbar .navbar-nav .show>.nav-link {
 	color: #fff;
-	padding-bottom: 25px;
-	border-bottom: 3px solid #f33f3f;
+	padding-bottom: 28px;
+	border-bottom: 3px solid #00cc00;
 }
 .navbar .navbar-toggler-icon {
 	background-image: none;
@@ -299,7 +306,7 @@ header .navbar {
 }
 .navbar .navbar-toggler-icon:after {
 	content: '\f0c9';
-	color: #f33f3f;
+	color: #00cc00;
 	font-size: 22px;
 	line-height: 26px;
 	font-family: 'FontAwesome';
@@ -405,7 +412,7 @@ header .navbar {
 }
 
 .banner .text-content h4 {
-	color: #f33f3f;
+	color: #00cc00;
 	font-size: 22px;
 	text-transform: uppercase;
 	font-weight: 700;
@@ -465,7 +472,7 @@ header .navbar {
 	text-transform: uppercase;
 	font-size: 13px;
 	font-weight: 700;
-	color: #f33f3f;
+	color: #00cc00;
 }
 
 .product-item {
@@ -508,7 +515,7 @@ header .navbar {
 }
 
 .product-item .down-content ul li i {
-	color: #f33f3f;
+	color: #00cc00;
 	font-size: 14px;
 }
 
@@ -517,18 +524,24 @@ header .navbar {
 	right: 30px;
 	bottom: 30px;
 	font-size: 13px;
-	color: #f33f3f;
+	color: #00cc00;
 	font-weight: 500;
 }
 
 .product-item .down-content span a {
-	color: #f33f3f;
+	color: #00cc00;
 	display: inline-block;
 	margin-bottom: 3px;
 }
 
 .modal-dialog { 
 	margin-top: 10%; 
+}
+
+/* Forms */
+
+div.container.forms {
+	max-width: 600px !important;
 }
 
 /* Best Features */
@@ -598,11 +611,11 @@ header .navbar {
 }
 
 .best-features ul.featured-list li a:hover {
-	color: #f33f3f;
+	color: #00cc00;
 }
 
 .best-features ul.featured-list li a:hover::before {
-	background-color: #f33f3f;
+	background-color: #00cc00;
 }
 
 .best-features .filled-button {
@@ -647,7 +660,7 @@ header .navbar {
 /* Footer */
 
 footer {
-	position: fixed !important;;
+	position: absolute !important;;
   margin-top: 20px !important;
   bottom: 0 !important;
   width: 100% !important;
@@ -655,7 +668,7 @@ footer {
 }
 
 .bg-dark {
-    padding-bottom: 185px !important;
+    padding-bottom: 174px !important;
 }
 
 .form-outline .form-control {
@@ -713,7 +726,7 @@ footer {
 
 .products .filters ul li.active,
 .products .filters ul li:hover {
-  color: #f33f3f;
+  color: #00cc00;
 }
 
 .dropdown-menu { 
@@ -726,7 +739,7 @@ footer {
 
 .page-heading {
 	position:relative;
-	margin-top: -10px;
+	/* margin-top: -10px; */
 }
 .page-heading:before {
 	content:'';
@@ -765,8 +778,8 @@ footer {
 
 .products ul.pages li a:hover,
 .products ul.pages li.active a {
-	background-color: #f33f3f;
-	border-color: #f33f3f;
+	background-color: #00cc00;
+	border-color: #00cc00;
 	color: #fff;
 }
 
@@ -820,7 +833,7 @@ footer {
 
 .team-member .thumb-container .hover-effect .hover-content ul.social-icons li a:hover {
 	background-color: #fff;
-	color: #f33f3f;
+	color: #00cc00;
 }
 
 .team-member:hover .hover-effect {
@@ -837,7 +850,7 @@ footer {
 .team-member .down-content span {
 	display: block;
 	font-size: 13px;
-	color: #f33f3f;
+	color: #00cc00;
 	font-weight: 500;
 	margin-bottom: 20px;
 }
@@ -875,7 +888,7 @@ footer {
 	display: inline-block;
 	text-align: center;
 	line-height: 100px;
-	background-color: #f33f3f;
+	background-color: #00cc00;
 	color: #fff;
 	font-size: 32px;
 }
@@ -916,7 +929,7 @@ footer {
 }
 
 .owl-clients button.owl-dot.active { 
-	background: #f33f3f!important; 
+	background: #00cc00!important; 
 }
 
 /* Clients */
@@ -1010,7 +1023,7 @@ footer {
 }
 
 .contact-form button.filled-button {
-	background-color: #f33f3f;
+	background-color: #00cc00;
 	color: #fff;
 	font-size: 14px;
 	text-transform: capitalize;
@@ -1042,11 +1055,11 @@ footer {
 }
 
 .accordion a:hover {
-	color: #f33f3f!important;
+	color: #00cc00!important;
 }
 
 .accordion a.active {
-  color: #f33f3f!important;
+  color: #00cc00!important;
 }
 
 .accordion li .content {
@@ -1182,7 +1195,7 @@ footer {
 	.navbar .navbar-nav .nav-link.active,
 	.navbar .navbar-nav .nav-link.show,
 	.navbar .navbar-nav .show>.nav-link {
-		color: #f33f3f!important;
+		color: #00cc00!important;
 		border-bottom: none!important;
 		padding-bottom: 15px;
 	}
