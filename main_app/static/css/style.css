@@ -144,6 +144,11 @@ p#total.card-text {
     margin-left: 15px;
 	margin-top: 10px;
 }
+.index-price {
+    /* font-weight: bold; */
+    font-size: 19px;
+    margin-top: 5px;
+}
 
 p {
 	margin-bottom: 0px !important;
@@ -786,21 +791,20 @@ div.container.forms {
 	margin-top: 12px;
 }
 
-
-
-
 /* Footer */
 
-footer {
-	position: absolute !important;;
-  margin-top: 20px !important;
-  bottom: 0 !important;
-  width: 100% !important;
-  height: 163px !important;
-}
+@media (min-width: 768px) {
+	footer {
+		position: absolute !important;;
+		margin-top: 20px !important;
+		bottom: 0 !important;
+		width: 100% !important;
+		height: 163px !important;
+	}
 
-.bg-dark {
-    padding-bottom: 178px !important;
+	.bg-dark {
+		padding-bottom: 178px !important;
+	}
 }
 
 .form-outline .form-control {
@@ -828,6 +832,8 @@ footer {
 .btn-floating, [class*=btn-outline-].btn-floating {
     padding: 4px !important
 }
+/* Footer */
+
 
 /* Buttons */
 .signup {
@@ -1287,6 +1293,7 @@ footer {
 		margin-left: 0px;
 	}
 }
+
 
 @media (max-width: 992px) {
 	.navbar .navbar-brand {
