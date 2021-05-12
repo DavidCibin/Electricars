@@ -12,6 +12,20 @@
   }
 </script>
 
+<div class="rev-content"> 
+  <span class="stars">
+  
+  {% if car.luggage == 1 %}
+    🧳
+  {% elif car.luggage == 2 %}
+    🧳 🧳 
+  {% elif car.luggage == 2 %}
+    🧳 🧳 🧳
+  {% elif car.luggage == 2 %}
+    🧳 🧳 🧳 🧳 
+  {% endif %}</span>
+</div>
+
 <div class="container">
 <h1>Car Details</h1>
 
@@ -32,8 +46,36 @@
       {% endfor %}
     </div>
     <div class="card-body card-center">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <h5 class="card-title">{{ car.make }} {{ car.model }}</h5>
+      <p class="card-text">Passengers: 
+        <span class="passenger">
+          {% if car.passengers == 1 %}
+            <i class="fas fa-user"></i>
+          {% elif car.passengers == 2 %}
+            <i class="fas fa-user"></i>   <i class="fas fa-user"></i>
+          {% elif car.passengers == 3 %}
+            <i class="fas fa-user"></i>   <i class="fas fa-user"></i>   <i class="fas fa-user"></i>
+          {% elif car.passengers == 4 %}
+            <i class="fas fa-user"></i>   <i class="fas fa-user"></i>   <i class="fas fa-user"></i>   <i class="fas fa-user"></i> 
+          {% elif car.passengers == 5 %}
+          <i class="fas fa-user"></i>   <i class="fas fa-user"></i>   <i class="fas fa-user"></i>   <i class="fas fa-user"></i>   <i class="fas fa-user"></i> 
+          {% endif %}
+        </span>
+      </p>
+      <p class="card-text">Luggage: 
+        <span class="luggage">
+          {% if car.luggage == 1 %}
+            🧳
+          {% elif car.luggage == 2 %}
+            🧳  🧳 
+          {% elif car.luggage == 3 %}
+            🧳 🧳 🧳
+          {% elif car.luggage == 4 %}
+            🧳 🧳 🧳 🧳 
+          {% endif %}
+        </span>
+      </p>
+      <p class="card-text">Range p/ charge: {{ car.erange }} miles</p>
     </div>
     <div class="card-body card-right">
       <h5 class="card-title">Special title treatment</h5>
@@ -52,7 +94,7 @@
   <div class="card-content">
     <span class="card-title">{{ car.make }}</span>
     <p>Model: {{ car.model }}</p>
-    <p>Passenger: {{ car.passengers }}</p>
+    <p>Passengers: {{ car.passengers }}</p>
     <p>Luggage: {{ car.luggage }}</p>
     <p>Range: {{ car.erange }} miles</p>
     <p id="price" type="number" value="{{ car.price }}">${{ car.price }}<span> per/day</span></p>
@@ -242,6 +284,25 @@
       document.getElementById("id_total").value = finalValue.toFixed(2);
     }
   });
+
+  let pcs = {car.luggage}
+  console.log(pcs)
+  function renderSwitch(pcs) {
+		switch(pcs) {
+			case 1:
+				return '⭐'
+			case 2:
+				return '⭐⭐'
+			case 3:
+				return '⭐⭐⭐'
+			case 4:
+				return '⭐⭐⭐⭐'
+			case 5:
+				return '⭐⭐⭐⭐⭐'
+		  default:
+			return 'no rating';
+		}
+	  }
 
 
 </script>

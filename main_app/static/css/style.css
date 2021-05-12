@@ -351,6 +351,7 @@ header .navbar {
 /* Cars Booking Page */
 .detail-card {
 	display: grid;
+	padding: 10px;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-areas: 
     "box1 box2 box3"
@@ -704,7 +705,7 @@ footer {
 }
 
 .bg-dark {
-    padding-bottom: 174px !important;
+    padding-bottom: 178px !important;
 }
 
 .form-outline .form-control {
@@ -716,7 +717,7 @@ footer {
     height: 35px !important;
 }
 .p-3 {
-  padding: 1rem !important;
+  padding: 0rem !important;
   display: flex !important;
   align-items: center!important;
   justify-content: center !important;
