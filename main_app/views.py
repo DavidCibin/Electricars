@@ -134,7 +134,7 @@ def addbooking(request, car_id):
 #   return redirect('detail', car_id=car_id)
 class CarCreate(CreateView):
   model = Car
-  fields = ['make', 'model', 'passengers', 'luggage', 'erange', 'price']
+  fields = ['make', 'model', 'passengers', 'luggage', 'suitcase', 'erange', 'price']
   
   # This inherited method is called when a
   # valid lizard form is being submitted

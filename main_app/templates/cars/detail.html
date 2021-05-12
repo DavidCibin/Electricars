@@ -12,20 +12,6 @@
   }
 </script>
 
-<div class="rev-content"> 
-  <span class="stars">
-  
-  {% if car.luggage == 1 %}
-    🧳
-  {% elif car.luggage == 2 %}
-    🧳 🧳 
-  {% elif car.luggage == 2 %}
-    🧳 🧳 🧳
-  {% elif car.luggage == 2 %}
-    🧳 🧳 🧳 🧳 
-  {% endif %}</span>
-</div>
-
 <div class="container">
 <h1>Car Details</h1>
 
@@ -73,14 +59,26 @@
           {% elif car.luggage == 4 %}
             🧳 🧳 🧳 🧳 
           {% endif %}
+          <span class="suitcase">
+            {% if car.suitcase == 1 %}
+              💼
+            {% elif car.suitcase == 2 %}
+              💼  💼 
+            {% elif car.suitcase == 3 %}
+              💼 💼 💼
+            {% elif car.suitcase == 4 %}
+              💼 💼 💼 💼 
+            {% endif %}
+          </span>
         </span>
       </p>
       <p class="card-text">Range p/ charge: {{ car.erange }} miles</p>
+      
     </div>
     <div class="card-body card-right">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <h5 class="card-title">Cost</h5>
+      <p class="card-text" id="price" type="number" value="{{ car.price }}">${{ car.price }}<span class="perday"> per/day</span></p>
+      <p class="card-text" id="total" type="number" value="{{ car.price }}">Total ${{ car.price }}</p><span> for <span id="total-days">1</span> day(s) rental</span>
     </div>
   </div>
 </div>
@@ -92,24 +90,15 @@
 
 <div class="card">
   <div class="card-content">
-    <span class="card-title">{{ car.make }}</span>
-    <p>Model: {{ car.model }}</p>
-    <p>Passengers: {{ car.passengers }}</p>
-    <p>Luggage: {{ car.luggage }}</p>
-    <p>Range: {{ car.erange }} miles</p>
-    <p id="price" type="number" value="{{ car.price }}">${{ car.price }}<span> per/day</span></p>
-
-    {% with carprice=car.price %}
-    <p id="total" type="number" value="{{ car.price }}">Total ${{ carprice }}</p>
-    {% endwith %}
     <div>
+      <h2>Complete Reservation</h2>
       <form action="{% url 'addbooking' car.id %}" method="POST">
         {% csrf_token %}
         {{ booking_form.as_p }}
         {% if not user.profile.zipcode %}
         {{ profile_form.as_p }}
         {% endif %}
-        <input type="submit" class="btn" value="Add booking">
+        <input type="submit" class="btn" value="Confirm">
       </form>
     </div>
 
@@ -259,6 +248,8 @@
       coverageStatus ? coverageValue = 20 * (totalDays - 1) : coverageValue = 0
       finalValue = +(coverageValue + ((totalDays - 1) * iniValue)).toFixed(2)
       document.getElementById("id_total").value = finalValue.toFixed(2);
+      document.getElementById("total").innerText = `Total $${finalValue.toFixed(2)}`;
+      document.getElementById("total-days").innerText = (totalDays - 1);
     }
   );
   $('#start_date').on("change", function () {
@@ -275,6 +266,8 @@
       coverageStatus = true
       finalValue = (finalValue + coverageValue)
       document.getElementById("id_total").value = finalValue.toFixed(2);
+      document.getElementById("total").innerText = `Total $${finalValue.toFixed(2)}`;
+      document.getElementById("total-days").innerText = (totalDays - 1);
     }
     else {
       coverageValue = (20 * (totalDays - 1))
@@ -282,28 +275,10 @@
       coverageValue = 0
       coverageStatus = false
       document.getElementById("id_total").value = finalValue.toFixed(2);
+      document.getElementById("total").innerText = `Total $${finalValue.toFixed(2)}`;
+      document.getElementById("total-days").innerText = (totalDays - 1);
     }
   });
-
-  let pcs = {car.luggage}
-  console.log(pcs)
-  function renderSwitch(pcs) {
-		switch(pcs) {
-			case 1:
-				return '⭐'
-			case 2:
-				return '⭐⭐'
-			case 3:
-				return '⭐⭐⭐'
-			case 4:
-				return '⭐⭐⭐⭐'
-			case 5:
-				return '⭐⭐⭐⭐⭐'
-		  default:
-			return 'no rating';
-		}
-	  }
-
 
 </script>
 

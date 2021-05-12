@@ -12,6 +12,7 @@ class Car(models.Model):
   model = models.CharField(max_length=100)
   passengers = models.IntegerField()
   luggage = models.IntegerField()
+  suitcase = models.IntegerField()
   erange = models.IntegerField()
   price = models.DecimalField(max_digits=6, decimal_places=2)
   user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -33,7 +34,7 @@ class Photo(models.Model):
 
 INSURANCE = (
     ('N', 'No Coverage'),
-    ('F', 'Full Coverage'),
+    ('F', 'Full Coverage (+$20.00/day)'),
 )
 
 class Booking(models.Model):

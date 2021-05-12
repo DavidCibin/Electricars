@@ -26,6 +26,16 @@ body {
 	line-height: 3px;
 }
 
+.suitcase {
+    font-size: 10px;
+    margin-right: 5px;
+    letter-spacing: 1px;
+}
+.luggage {
+    margin-right: 5px;
+    letter-spacing: 1px;
+}
+
 .picker {
     margin: 0 auto;
     display: inline-flex;
@@ -53,6 +63,22 @@ body {
 
 .pudate, .dodate {
 	pointer-events: none !important;
+}
+
+#price {
+    font-size: 25px;
+    font-weight: bold;
+}
+#price span {
+    font-size: 12px;
+    font-weight:lighter;
+}
+p#total.card-text {
+    margin-top: 10px;
+    font-weight: 800;
+}
+#total {
+    font-weight: bolder;
 }
 
 p {
@@ -357,16 +383,18 @@ header .navbar {
     "box1 box2 box3"
 }
 .card-left {
-	background: red;
 	grid-area: box1;
+	margin-left: 50px;
 }
 .card-center {
-	background: yellow;
 	grid-area: box2;
+	margin-left: 50px;
+	margin-top: 20px;
 }
 .card-right {
-	background: green;
 	grid-area: box3;
+	margin-left: 30px;
+	margin-top: 20px;
 }
 
 .card-img-top {

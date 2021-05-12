@@ -17,7 +17,7 @@ class SignUpForm(UserCreationForm):
 class BookingForm(ModelForm):
   class Meta:
     model = Booking
-    fields = ['start_date', 'end_date', 'total', 'insurance']
+    fields = ['insurance', 'start_date', 'end_date', 'total']
     widgets = {
         'start_date': forms.TextInput(attrs={'readonly': 'readonly','class':'pudate'}),
         'end_date': forms.TextInput(attrs={'readonly': 'readonly','class':'dodate'}),
