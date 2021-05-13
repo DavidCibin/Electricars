@@ -50,7 +50,7 @@ def subscription(request):
         subscribe(email)                    # function to access mailchimp
         messages.success(request, "Email received. thank You! ") # message
 
-    return render(request, "base.html")
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 
@@ -231,7 +231,6 @@ def account(request):
 
 # Define the home view
 def home(request):
-  
   return render(request, 'home.html')
 
 def about(request):
