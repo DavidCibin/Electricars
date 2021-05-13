@@ -50,6 +50,27 @@
   </head>
   
   <body>
+    <form method="post" action="{% url 'subscription' %}">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <label>Subscribe to get the latest Articles</label> <br>
+        <input type="email" name="email" placeholder="Enter Email to Subscribe">
+        <button class="btn btn-info" type="submit">Submit</button>
+      </div>
+
+    </form>
+
+    <!-- message if email is sent -->
+  {% if messages %}
+    {% for message in messages %}
+      <div class="my-5 alert alert-success">
+        <h5 class="m-0">
+            {{ message }}
+        </h5>
+      </div>
+    {% endfor %}
+  {% endif %}
     
     <!-- ***** Preloader Start ***** -->
     <div id="preloader">
@@ -99,19 +120,14 @@
       {% block content %}
       {% endblock %}
     </main>
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    
     <footer class="bg-dark text-center text-white">
       <!-- Grid container -->
       <div class="container p-4 pb-0">
         <!-- Section: Form -->
         <section class="">
-          <form action="">
+          <form method="post" action="{% url 'subscription' %}">
+            {% csrf_token %}
             <!--Grid row-->
             <div class="row d-flex justify-content-center">
               <!--Grid column-->
@@ -126,22 +142,21 @@
               <div class="col-md-5 col-12">
                 <!-- Email input -->
                 <div class="form-outline form-white mb-4">
-                  <input type="email" id="form5Example2" class="form-control" />
+                  <input type="email" name="email" id="form5Example2" class="form-control" />
                   <label class="form-label" for="form5Example2">Email address</label>
                 </div>
               </div>
+              <!--Grid column-->
+
+              <!--Email subscription Form -->
+                
               <!--Grid column-->
               
               <!--Grid column-->
               <div class="col-auto">
                 <!-- Submit button -->
-                <form action="{% url 'email_list_signup' %}" method="POST">
-                  {% csrf_token %}
-                  <div class="form-group">
-                      {{ form }}
-                      <button type="submit" class="btn btn-outline-light mb-4">Subscribe</button>
-                  </div>
-                </form>
+                
+                <button type="submit" class="btn btn-outline-light mb-4">Subscribe</button>
               </div>
               <!--Grid column-->
             </div>

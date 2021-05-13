@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'phone_field',
-    'bootstrap_daterangepicker'
+    'bootstrap_daterangepicker',
+    'mailchimp_marketing',
 ]
 
 MIDDLEWARE = [

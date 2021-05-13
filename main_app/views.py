@@ -13,10 +13,47 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 import json
 import requests
+from mailchimp_marketing import Client
+from mailchimp_marketing.api_client import ApiClientError
 
 # Create your views here.
 
 # MAILCHIMP API EMAIL SUBSCRIPTION
+api_key=settings.MAILCHIMP_API_KEY
+server=settings.MAILCHIMP_DATA_CENTER
+list_id=settings.MAILCHIMP_EMAIL_LIST_ID
+
+# Subscription Logic
+def subscribe(email):
+
+    mailchimp = Client()
+    mailchimp.set_config({
+        "api_key": api_key,
+        "server": server,
+    })
+
+    member_info = {
+        "email_address": email,
+        "status": "subscribed",
+    }
+
+    try:
+        response = mailchimp.lists.add_list_member(list_id, member_info)
+        print("response: {}".format(response))
+    except ApiClientError as error:
+        print("An exception occurred: {}".format(error.text))
+
+def subscription(request):
+    print('test')
+    if request.method == "POST":
+        email = request.POST['email']
+        subscribe(email)                    # function to access mailchimp
+        messages.success(request, "Email received. thank You! ") # message
+
+    return render(request, "base.html")
+
+
+
 
 MAILCHIMP_API_KEY=settings.MAILCHIMP_API_KEY
 MAILCHIMP_DATA_CENTER=settings.MAILCHIMP_DATA_CENTER
@@ -25,31 +62,6 @@ MAILCHIMP_EMAIL_LIST_ID=settings.MAILCHIMP_EMAIL_LIST_ID
 api_url = f'https://{MAILCHIMP_DATA_CENTER}.api.mailchimp.com/3.0'
 members_endpoint = f'{api_url}/lists/{MAILCHIMP_EMAIL_LIST_ID}/members'
     
-
-def subscribe(email):
-    data = {
-        "email_address": email,
-        "status": "subscribed"
-    }
-    r = requests.post(
-        members_endpoint,
-        auth=("", MAILCHIMP_API_KEY),
-        data=json.dumps(data)
-    )
-    return r.status_code, r.json()
-
-
-def email_list_signup(request):
-    form = EmailSignupForm(request.POST or None)
-    if request.method == "POST":
-        if form.is_valid():
-            email_signup_qs = Signup.objects.filter(email=form.instance.email)
-            if email_signup_qs.exists():
-                messages.info(request, "You are already subscribed")
-            else:
-                subscribe(form.instance.email)
-                form.save()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 # AWS PHOTO
@@ -219,6 +231,7 @@ def account(request):
 
 # Define the home view
 def home(request):
+  
   return render(request, 'home.html')
 
 def about(request):
