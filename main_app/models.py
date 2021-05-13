@@ -42,7 +42,6 @@ class Booking(models.Model):
   car = models.ForeignKey(Car, on_delete=models.CASCADE)
   start_date = models.DateField()
   end_date = models.DateField()
-  creator = models.CharField(max_length=100)
   total = models.DecimalField(max_digits=6, decimal_places=2)
   insurance = models.CharField(
     max_length=1,
