@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from main_app.views import email_list_signup
 
 urlpatterns = [
   path('', views.home, name='home'),
@@ -25,10 +26,9 @@ urlpatterns = [
   # route to update profile
   path('accounts/<int:pk>/update/', views.ProfileUpdate.as_view(), name='accounts_update'),
 
-  # route for booking detils
-  # path('booking/', views.booking, name='booking'),
+  # route for email subscription
+  path('subscribe/', email_list_signup, name='email_list_signup'),
 
   # path to cancel a reservation
-  # path('booking/<int:pk>/delete/', views.BookingDelete.as_view(), name='cancel_rental'),
-  path('account//booking/<int:pk>/delete/', views.BookingDelete.as_view(), name='cancel_rental'),  
+  path('account/booking/<int:pk>/delete/', views.BookingDelete.as_view(), name='cancel_rental'),  
 ]

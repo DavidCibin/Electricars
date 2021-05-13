@@ -84,3 +84,10 @@ def update_profile_signal(sender, instance, created, **kwargs):
     if created:     
         Profile.objects.create(user=instance)
     instance.profile.save()        
+
+class Signup(models.Model):
+    email = models.EmailField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.email

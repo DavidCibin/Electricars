@@ -99,7 +99,13 @@
       {% block content %}
       {% endblock %}
     </main>
-    
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <footer class="bg-dark text-center text-white">
       <!-- Grid container -->
       <div class="container p-4 pb-0">
@@ -129,9 +135,13 @@
               <!--Grid column-->
               <div class="col-auto">
                 <!-- Submit button -->
-                <button type="submit" class="btn btn-outline-light mb-4">
-                  Subscribe
-                </button>
+                <form action="{% url 'email_list_signup' %}" method="POST">
+                  {% csrf_token %}
+                  <div class="form-group">
+                      {{ form }}
+                      <button type="submit" class="btn btn-outline-light mb-4">Subscribe</button>
+                  </div>
+                </form>
               </div>
               <!--Grid column-->
             </div>

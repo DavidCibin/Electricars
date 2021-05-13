@@ -25,6 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 SECRET_KEY = env('SECRET_KEY')
+MAILCHIMP_API_KEY= env('MAILCHIMP_API_KEY')
+MAILCHIMP_DATA_CENTER= env('MAILCHIMP_DATA_CENTER')
+MAILCHIMP_EMAIL_LIST_ID= env('MAILCHIMP_EMAIL_LIST_ID')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

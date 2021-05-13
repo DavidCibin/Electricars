@@ -3,18 +3,56 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 import uuid
 import boto3
-from .models import Booking, Car, Photo, Profile
+from .models import Booking, Car, Photo, Profile, Signup
 from django.views.generic.edit import CreateView
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm
-
-from .forms import BookingForm
-from .forms import ProfileForm
-
+from .forms import SignUpForm, BookingForm, ProfileForm, EmailSignupForm
+from django.conf import settings
+from django.contrib import messages
+from django.http import HttpResponseRedirect
+import json
+import requests
 
 # Create your views here.
 
+# MAILCHIMP API EMAIL SUBSCRIPTION
+
+MAILCHIMP_API_KEY=settings.MAILCHIMP_API_KEY
+MAILCHIMP_DATA_CENTER=settings.MAILCHIMP_DATA_CENTER
+MAILCHIMP_EMAIL_LIST_ID=settings.MAILCHIMP_EMAIL_LIST_ID
+
+api_url = f'https://{MAILCHIMP_DATA_CENTER}.api.mailchimp.com/3.0'
+members_endpoint = f'{api_url}/lists/{MAILCHIMP_EMAIL_LIST_ID}/members'
+    
+
+def subscribe(email):
+    data = {
+        "email_address": email,
+        "status": "subscribed"
+    }
+    r = requests.post(
+        members_endpoint,
+        auth=("", MAILCHIMP_API_KEY),
+        data=json.dumps(data)
+    )
+    return r.status_code, r.json()
+
+
+def email_list_signup(request):
+    form = EmailSignupForm(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            email_signup_qs = Signup.objects.filter(email=form.instance.email)
+            if email_signup_qs.exists():
+                messages.info(request, "You are already subscribed")
+            else:
+                subscribe(form.instance.email)
+                form.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+# AWS PHOTO
 S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
 BUCKET = 'electricar'
 def add_photo(request, car_id):
