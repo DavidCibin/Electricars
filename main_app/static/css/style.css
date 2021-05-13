@@ -71,7 +71,8 @@ body {
 	color: #dceeff !important;
 }
 .btn-float {
-	float: right;
+    float: right;
+    margin-right: 15px;
 }
 .profile-table {
     border: 1px solid #ccc;
