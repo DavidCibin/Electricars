@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Profile, Signup
+from .models import Profile
 
 
 from django.forms import ModelForm
@@ -30,15 +30,3 @@ class ProfileForm(ModelForm):
     model = Profile
     fields = ['phone', 'address1', 'city', 'state', 'zipcode']    
 
-
-class EmailSignupForm(forms.ModelForm):
-    email = forms.EmailField(widget=forms.TextInput(attrs={
-        "type": "email",
-        "name": "email",
-        "id": "form5Example2",
-        "class": "form-control",
-    }), label="Email address")
-
-    class Meta:
-        model = Signup
-        fields = ('email', )

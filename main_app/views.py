@@ -3,11 +3,11 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 import uuid
 import boto3
-from .models import Booking, Car, Photo, Profile, Signup
+from .models import Booking, Car, Photo, Profile
 from django.views.generic.edit import CreateView
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm, BookingForm, ProfileForm, EmailSignupForm
+from .forms import SignUpForm, BookingForm, ProfileForm
 from django.conf import settings
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -51,17 +51,6 @@ def subscription(request):
         messages.success(request, "Email received. thank You! ") # message
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-
-
-
-MAILCHIMP_API_KEY=settings.MAILCHIMP_API_KEY
-MAILCHIMP_DATA_CENTER=settings.MAILCHIMP_DATA_CENTER
-MAILCHIMP_EMAIL_LIST_ID=settings.MAILCHIMP_EMAIL_LIST_ID
-
-api_url = f'https://{MAILCHIMP_DATA_CENTER}.api.mailchimp.com/3.0'
-members_endpoint = f'{api_url}/lists/{MAILCHIMP_EMAIL_LIST_ID}/members'
-    
 
 
 # AWS PHOTO
