@@ -47,12 +47,8 @@ body {
     padding: 10px !important;
     margin: 20px;
 }
-.btn-book:hover {
-	background: #016401;
-	color: #dceeff;
-}
 .btn-book {
-    font-weight: 400;
+	font-weight: 400;
     color: #212529;
 	background: #00cc00;
     text-align: center;
@@ -66,10 +62,29 @@ body {
     border: 1px solid transparent;
     padding: .375rem .75rem;
     font-size: 1rem;
-	float: right;
 	box-shadow: 0 0 5px grey;
     border-radius: .25rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.btn-book:hover {
+	background: #016401 !important;
+	color: #dceeff !important;
+}
+.btn-float {
+	float: right;
+}
+.profile-table {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 7px;
+	max-width: 500px;
+    box-shadow: 0 0 5px #ccc;
+}
+.reser-table {
+    border: 1px solid #ccc;
+    padding: 7px;
+    box-shadow: 0 0 5px #ccc;
+    border-radius: 10px;
 }
  
 .phone-field-ext { display: none !important; }

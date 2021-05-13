@@ -1,22 +1,54 @@
 {% extends 'base.html' %}
 {% block content %}
 
+1 {{ user }}
+2 {{ user.email }}
+3 {{ user.id }}
+4 {{ user.profile.user }}
+5 {{ total }}
+6 {{ booking.creator }}
+{% if user == user.email %}
+verdade
+{% else %}
+falso
+{% endif %}
+
+
 <div class="container">
-  <ul style="list-style-type:square">
-    <li>{{ user.first_name}}</li>
-    <li>{{ user.last_name}}</li>
-    <li>{{ user.email}}</li>
-    <li>{{ user.profile.phone}}</li>
-    <li>{{ user.profile.address1}}</li>
-    <li>{{ user.profile.city}}</li>
-    <li>{{ user.profile.state}}</li>
-    <li>{{ user.profile.zipcode}}</li>
-  </ul>
-  <div class="card-action">
-    <a href="{% url 'accounts_update' user.id %}">Edit</a>
+  <div class="col s6 profile-table">
+    <table class="striped">
+      <thead>
+        <tr>
+          <th class="tg-0lax">Profile</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tg-0lax">{{ user.first_name}} {{ user.last_name}}</td>
+        </tr>
+        <tr>
+          <td class="tg-0lax">{{ user.email}}</td>
+        </tr>
+        <tr>
+          <td class="tg-0lax">{{ user.profile.phone}}</td>
+        </tr>
+        <tr>
+          <td class="tg-0lax">{{ user.profile.address1}}</td>
+        </tr>
+        <tr>
+          <td class="last-p">{{ user.profile.city}} {{ user.profile.state}} {{ user.profile.zipcode}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  
-  <div class="col s6">
+  </br>
+  <div class="card-action">
+    <a class="btn-book" href="{% url 'accounts_update' user.id %}">Edit Profile</a>
+  </div>
+  </br>
+  </br>
+  <h3>Reservations</h3>
+  <div class="col s6 reser-table">
     <table class="striped">
       <thead>
         <tr>
@@ -30,6 +62,7 @@
       </thead>
       <tbody>
         {% for booking in booking %}
+        {% if user == booking.user %}
         <tr>
           <td>rEs{{booking.id}}</td>
           <td>{{user.first_name}} {{user.last_name}}</td>
@@ -38,10 +71,12 @@
           <td>{{booking.get_insurance_display}} </td>
           <td>${{booking.total}} </td>
         </tr>
+        {% endif %}
         {% endfor %}
       </tbody>
     </table>
   </div>
-  
+
 </div>
+
 {% endblock %}

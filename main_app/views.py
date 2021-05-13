@@ -99,6 +99,7 @@ def addbooking(request, car_id):
         new_booking = booking_form.save(commit=False)
         new_booking.car_id = car_id
         new_booking.user_id = request.user.id
+        new_booking.creator = request.user.id
         new_booking.save()
     return redirect('detail', car_id=car_id)
   
@@ -168,7 +169,6 @@ class ProfileUpdate(UpdateView):
 #   return render(request, 'cars/index.html', { 'cars': cars })
 
 def account(request):
-  # car = User.objects.get(user=user)
   profile = Profile.objects.all()
   booking = Booking.objects.all()
   return render(request, 'accounts/profile.html', { 'profile': profile, 'booking': booking })

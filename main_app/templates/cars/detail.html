@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
+1 {{ user }}
+2 {{ user.email }}
+3 {{ user.id }}
+4 {{ user.profile.user }}
+5 {{ booking.total }}
+{% if user == user.email %}
+verdade
+{% else %}
+falso
+{% endif %}
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -100,7 +110,7 @@
     {% csrf_token %}
     <input type="file" name="photo-file">
     <br><br>
-    <input type="submit" class="btn" value="Upload Photo">
+    <input type="submit" class="btn-book" value="Upload Photo">
   </form>
 
 {% else %}
