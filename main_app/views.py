@@ -3,7 +3,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 import uuid
 import boto3
-from .models import Car, Photo, Profile
+from .models import Booking, Car, Photo, Profile
 from django.views.generic.edit import CreateView
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -170,7 +170,8 @@ class ProfileUpdate(UpdateView):
 def account(request):
   # car = User.objects.get(user=user)
   profile = Profile.objects.all()
-  return render(request, 'accounts/profile.html', { 'profile': profile })
+  booking = Booking.objects.all()
+  return render(request, 'accounts/profile.html', { 'profile': profile, 'booking': booking })
 
 # Define the home view
 def home(request):

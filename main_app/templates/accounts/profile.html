@@ -15,6 +15,33 @@
   <div class="card-action">
     <a href="{% url 'accounts_update' user.id %}">Edit</a>
   </div>
+  
+  <div class="col s6">
+    <table class="striped">
+      <thead>
+        <tr>
+          <th>Reservation</th>
+          <th>Name</th>
+          <th>Pick-up</th>
+          <th>Drop-off</th>
+          <th>Coverage</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for booking in booking %}
+        <tr>
+          <td>rEs{{booking.id}}</td>
+          <td>{{user.first_name}} {{user.last_name}}</td>
+          <td>{{booking.start_date}} </td>
+          <td>{{booking.end_date}} </td>
+          <td>{{booking.get_insurance_display}} </td>
+          <td>${{booking.total}} </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  
 </div>
-
 {% endblock %}

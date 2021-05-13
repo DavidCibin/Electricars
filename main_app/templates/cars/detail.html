@@ -94,64 +94,38 @@
 
 {% if user.is_superuser %}
 
-<!-- Insert photo markup below this comment -->
-<form action="{% url 'add_photo' car.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
-  {% csrf_token %}
-  <input type="file" name="photo-file">
-  <br><br>
-  <input type="submit" class="btn" value="Upload Photo">
-</form>
-</div>
+<div class="forms" >
+  <!-- Insert photo markup below this comment -->
+  <form action="{% url 'add_photo' car.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+    {% csrf_token %}
+    <input type="file" name="photo-file">
+    <br><br>
+    <input type="submit" class="btn" value="Upload Photo">
+  </form>
 
 {% else %}
-<div class="card">
-  <div class="card-content">
-    <div>
-      <h2>Complete Reservation</h2>
-      <form action="{% url 'addbooking' car.id %}" method="POST">
-        {% csrf_token %}
-        {{ booking_form.as_p }}
-        {% if not user.profile.zipcode %}
-        {{ profile_form.as_p }}
-        {% endif %}
-        <input type="submit" class="btn" value="Confirm">
-      </form>
-    </div>
 
+  <div class="card">
+    <div class="card-content">
+      <div>
+        <h2>Complete Reservation</h2>
+        <form action="{% url 'addbooking' car.id %}" method="POST">
+          {% csrf_token %}
+          {{ booking_form.as_p }}
+          {% if not user.profile.zipcode %}
+          {{ profile_form.as_p }}
+          {% endif %}
+          <input type="submit" class="btn" value="Confirm">
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="col s6">
-  <table class="striped">
-    <thead>
-      <tr>
-        <th>Reservation</th>
-        <th>Name</th>
-        <th>Pick-up</th>
-        <th>Drop-off</th>
-        <th>Coverage</th>
-        <th>Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for booking in car.booking_set.all %}
-      <tr>
-        <td>rEs{{booking.id}}</td>
-        <td>{{user.first_name}} {{user.last_name}}</td>
-        <td>{{booking.start_date}} </td>
-        <td>{{booking.end_date}} </td>
-        <td>{{booking.get_insurance_display}} </td>
-        <td>${{booking.total}} </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
-</div>
 {% endif %}
 
 <script>
-
+  
   var startDate = new Date();
   var nextDay = ''
   var start_dateEl = document.getElementById('id_start_date');

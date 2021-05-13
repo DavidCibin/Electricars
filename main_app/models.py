@@ -51,11 +51,11 @@ class Booking(models.Model):
     default=INSURANCE[0][0]
   )
 
-  # how to get the booking id??????????
   def get_absolute_url(self):
     return reverse('booking', kwargs={'booking_id': self.id})
 
-
+  class Meta:
+    ordering = ['start_date']
 
   def __str__(self):
     # Nice method for obtaining the friendly value of a Field.choice
