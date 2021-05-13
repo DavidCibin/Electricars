@@ -257,6 +257,7 @@ a.filled-button:hover {
 	text-transform: uppercase;
 	font-weight: 700;
 	margin-bottom: 15px;
+	text-shadow: 0 10% #fff !important;
 }
 
 .page-heading .text-content h2 {
@@ -564,18 +565,22 @@ header .navbar {
 }
 
 .banner .text-content h4 {
-	color: #00cc00;
-	font-size: 22px;
-	text-transform: uppercase;
-	font-weight: 700;
-	margin-bottom: 15px;
+    color: #00cc00;
+    font-size: 28px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 0 0 1px #ccc;
+    -webkit-text-stroke: 0.7px #fff;
 }
 
 .banner .text-content h2 {
-	color: #fff;
-	font-size: 62px;
-	text-transform: uppercase;
-	letter-spacing: 5px;
+    color: #fff;
+    font-size: 62px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px #fff;
+    -webkit-text-stroke: 0.5px #00cc00;
 }
 
 .owl-banner .owl-dots .owl-dot {
