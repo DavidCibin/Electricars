@@ -13,19 +13,22 @@ urlpatterns = [
   # routes to update and delete
   path('cars/<int:pk>/update/', views.CarUpdate.as_view(), name='cars_update'),
   path('cars/<int:pk>/delete/', views.CarDelete.as_view(), name='cars_delete'),
-  # route for the booking/insurance
-  # path('cars/<int:car_id>/add_booking/', views.add_booking, name='add_booking'),
-  # route for the add profile
-  # path('cars/<int:car_id>/add_profile/', views.add_profile, name='add_profile'),
   # route to signup
   path('accounts/signup/', views.signup, name='signup'),
   path('accounts/', views.account, name='account'),
   # route for photos
   path('cars/<int:car_id>/add_photo/', views.add_photo, name='add_photo'),
 
-  # route for booking and profile form
+  # route for booking and extra profile form
   path('cars/<int:car_id>/addbooking/', views.addbooking, name='addbooking'),
 
   # route to update profile
   path('accounts/<int:pk>/update/', views.ProfileUpdate.as_view(), name='accounts_update'),
+
+  # route for booking detils
+  # path('booking/', views.booking, name='booking'),
+
+  # path to cancel a reservation
+  # path('booking/<int:pk>/delete/', views.BookingDelete.as_view(), name='cancel_rental'),
+  path('account//booking/<int:pk>/delete/', views.BookingDelete.as_view(), name='cancel_rental'),  
 ]

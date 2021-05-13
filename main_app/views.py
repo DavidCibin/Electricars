@@ -159,6 +159,14 @@ class CarDelete(DeleteView):
   model = Car
   success_url = '/cars/'
 
+class BookingDelete(DeleteView):
+  model = Booking
+  success_url = '/accounts/'
+
+class Booking2Delete(DeleteView):
+  model = Booking
+  success_url = '/account/'
+
 class ProfileUpdate(UpdateView):
   model = Profile
   # Let's disallow the renaming of a car by excluding the name field!
@@ -172,6 +180,12 @@ def account(request):
   profile = Profile.objects.all()
   booking = Booking.objects.all()
   return render(request, 'accounts/profile.html', { 'profile': profile, 'booking': booking })
+
+# def booking(request):
+#   profile = Profile.objects.all()
+#   booking = Booking.objects.all()
+#   return render(request, 'booking/details.html', { 'profile': profile, 'booking': booking })
+
 
 # Define the home view
 def home(request):

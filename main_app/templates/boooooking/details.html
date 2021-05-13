@@ -57,7 +57,7 @@
           <td>{{booking.start_date}} </td>
           <td>{{booking.end_date}} </td>
           <td>{{booking.get_insurance_display}} </td>
-          <td>${{booking.total}} </td>
+          <td>$$${{booking.total}} </td>
           <td><a class="btn btn-danger" href="{% url 'cancel_rental' booking.id %}">Cancel</a></td>
         </tr>
         {% endif %}

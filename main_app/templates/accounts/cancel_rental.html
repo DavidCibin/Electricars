@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+
+<h3>Cancel this reservation?</h3>
+  <div class="col s6 reser-table">
+    <table class="striped">
+      <thead>
+        <tr>
+          <th>Reservation</th>
+          <th>Name</th>
+          <th>Pick-up</th>
+          <th>Drop-off</th>
+          <th>Coverage</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for booking in booking %}
+        {% if user == booking.user %}
+        <tr>
+          <td>rEs{{booking.id}}</td>
+          <td>{{user.first_name}} {{user.last_name}}</td>
+          <td>{{booking.start_date}} </td>
+          <td>{{booking.end_date}} </td>
+          <td>{{booking.get_insurance_display}} </td>
+          <td>${{booking.total}} </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Yes - Delete!" class="btn">
+    <a class="btn" href="{% url 'account' %}">Cancel</a>
+  </form>
+</div>
+
+{% endblock %}
