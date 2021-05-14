@@ -138,8 +138,9 @@ def addbooking(request, car_id):
         new_booking = booking_form.save(commit=False)
         new_booking.car_id = car_id
         new_booking.user_id = request.user.id
+        new_booking.creator = request.user.id
         new_booking.save()
-    return redirect('detail', car_id=car_id)
+    return redirect('account')
   
   else:
     profile_form = ProfileForm(prefix="profile_form")

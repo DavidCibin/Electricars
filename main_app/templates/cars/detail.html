@@ -110,7 +110,7 @@
     <div class="card-content">
       <div>
         <h2>Complete Reservation</h2>
-        <form action="/accounts/" method="POST">
+        <form action="{% url 'addbooking' car.id %}" method="POST">
           {% csrf_token %}
           {{ booking_form.as_p }}
           {% if not user.profile.zipcode %}
