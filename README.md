@@ -12,7 +12,6 @@ Here is my [Trello Board](https://trello.com/b/HE3OqFaE/electricar)
 
 ## Screenshots
 
-
 ***
 
 ### Landing Page
