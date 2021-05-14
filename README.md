@@ -28,7 +28,7 @@ Here is my [Trello Board](https://trello.com/b/HE3OqFaE/electricar)
 ***
 
 ### Reservation Page
-![Reservations Page](https://i.ibb.co/59X3TcW/screencapture-localhost-8000-cars-5-2021-05-14-03-43-22.png)
+![Reservations Page](https://i.ibb.co/Pr1dZVR/screencapture-localhost-8000-cars-5-2021-05-14-03-43-22.png)
 ***
 
 
