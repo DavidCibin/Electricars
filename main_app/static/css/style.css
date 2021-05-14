@@ -166,6 +166,17 @@ p#total.card-text {
     margin-top: 5px;
 }
 
+.car-imgs:hover {
+	opacity: 0.9;
+	-webkit-transform: scale(1.005); /* Safari 3-8 */
+  	transform: scale(1.005); 
+}
+.car-imgs {
+    border-radius: 5px;
+    box-shadow: 4px 4px 9px;
+	transition: 0.7s;
+}
+
 p {
 	margin-bottom: 0px !important;
 	font-size: 14px;
@@ -409,8 +420,13 @@ header .navbar {
 	margin-top: 12px;
 }
 .navbar .navbar-brand h2 em {
-	font-style: normal;
-	color: #00cc00;
+    font-style: normal;
+    color: #00cc00;
+	
+}
+.logo-car {
+	margin-left: -90px;
+	width: 105px;
 }
 #navbarResponsive {
 	z-index: 999;

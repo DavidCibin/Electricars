@@ -31,8 +31,8 @@
 
   <form action="" method="POST">
     {% csrf_token %}
-    <input type="submit" value="Yes - Delete!" class="btn">
-    <a class="btn" href="{% url 'account' %}">Cancel</a>
+    <input type="submit" value="Yes - Cancel!" style="margin-top: 15px; margin-right: 5px;" class="btn btn-danger">
+    <a class="btn" style="margin-top: 15px;" href="{% url 'account' %}">Cancel</a>
   </form>
 </div>
 
