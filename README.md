@@ -24,7 +24,6 @@ Here is my [Trello Board](https://trello.com/b/HE3OqFaE/electricar)
 
 ### Fleet Page
 ![Rental List](https://i.ibb.co/vQN38Jw/screencapture-localhost-8000-cars-2021-05-14-03-32-09.png)
-
 ***
 
 ### Reservation Page
@@ -54,12 +53,12 @@ Here is my [Trello Board](https://trello.com/b/HE3OqFaE/electricar)
 
 ## Credits:
 
-* [Chris Smith](https://codepen.io/chris22smith) for the animated background
-* [ColorSpace](https://mycolor.space/gradient?ori=to+top&hex=%2343AA8B&hex2=%23713E5A&sub=1) for the gradient background
-* Icon made by Good Ware from https://www.flaticon.com
 * GIF from https://www.giphy.com
+* Icons https://fontawesome.com/
+
 
 ### Special Thanks:
+
 * Thank you to our instructors from General Assembly (Ben Manley, David Stinson, Shahzad Khan) for all support!!
 * Thank you to Sam Gemberling and William Hunter Long for all the help and patince :] 
 
