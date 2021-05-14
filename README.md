@@ -20,7 +20,7 @@ Here is my [Trello Board](https://trello.com/b/HE3OqFaE/electricar)
 ***
 
 ### About Page
-![About](https://i.ibb.co/Nt44jGn/screencapture-localhost-8000-about-2021-05-14-03-08-14.png)
+![About](https://i.ibb.co/TBTXj0R/screencapture-localhost-8000-about-2021-05-14-04-21-38.png)
 ***
 
 ### Fleet Page
