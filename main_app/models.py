@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.fields import EmailField
 from django.urls import reverse
 from django.contrib.auth.models import User
 from phone_field import PhoneField
@@ -85,3 +86,11 @@ def update_profile_signal(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
     instance.profile.save()        
 
+class Contact(models.Model):
+  name = models.CharField(max_length=100)
+  email = EmailField()
+  subject = models.CharField(max_length=100)
+  message = models.TextField(max_length=100)
+  
+  def __str__(self):
+      return self.name

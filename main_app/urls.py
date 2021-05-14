@@ -29,5 +29,7 @@ urlpatterns = [
   path("subscription/", views.subscription, name="subscription"),
 
   # path to cancel a reservation
-  path('account/booking/<int:pk>/delete/', views.BookingDelete.as_view(), name='cancel_rental'),  
+  path('account/booking/<int:pk>/delete/', views.BookingDelete.as_view(), name='cancel_rental'),
+  # path to contact form
+  path('contact/', views.contact, name='contact'), 
 ]

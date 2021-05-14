@@ -3,7 +3,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 import uuid
 import boto3
-from .models import Booking, Car, Photo, Profile
+from .models import Booking, Car, Photo, Profile, Contact
 from django.views.generic.edit import CreateView
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -224,3 +224,19 @@ def home(request):
 
 def about(request):
   return render(request, 'about.html')
+
+def contact(request):
+  if request.method == 'POST':
+      contact = Contact()
+      name = request.POST.get('name')
+      email = request.POST.get('email')
+      subject = request.POST.get('subject')
+      message = request.POST.get('message')
+      contact.name = name
+      contact.email = email
+      contact.subject = subject
+      contact.message = message
+      contact.save()
+  return render(request, 'contact.html')
+
+  
