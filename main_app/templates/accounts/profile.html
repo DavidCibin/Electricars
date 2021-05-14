@@ -50,10 +50,10 @@
       </thead>
       <tbody>
         {% for booking in booking %}
-        {% if user == booking.user %}
+        {% if user.is_superuser or user == booking.user %}
         <tr>
           <td>rEs{{booking.id}}</td>
-          <td>{{user.first_name}} {{user.last_name}}</td>
+          <td>{{booking.user.first_name}} {{booking.user.last_name}}</td>
           <td>{{booking.start_date}} </td>
           <td>{{booking.end_date}} </td>
           <td>{{booking.get_insurance_display}} </td>
