@@ -5,6 +5,17 @@
     <!--Section: Contact v.2-->
     <section class="mb-4">
 
+        <!-- message if email is sent -->
+        {% if messages %}
+        {% for message in messages %}
+        <div class="my-5 alert alert-success">
+            <h5 class="m-0">
+                {{ message }}
+            </h5>
+        </div>
+        {% endfor %}
+        {% endif %}
+
         <!--Section heading-->
         <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
         <!--Section description-->

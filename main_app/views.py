@@ -237,6 +237,7 @@ def contact(request):
       contact.subject = subject
       contact.message = message
       contact.save()
+      messages.success(request, "Message received. thank You! ") # message
   return render(request, 'contact.html')
 
   

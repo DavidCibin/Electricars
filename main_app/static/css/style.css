@@ -803,10 +803,13 @@ div.container.forms {
 /* Call To Action */
 
 .call-to-action .inner-content {
-	margin-top: 60px;
-	padding: 30px;
-	background-color: #f7f7f7;
-	border-radius: 5px;
+    margin-top: 60px;
+    padding: 30px;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    max-width: 1000px;
+    display: grid;
+    margin: 0 auto;
 }
 
 .call-to-action .inner-content h4 {
