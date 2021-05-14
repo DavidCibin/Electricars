@@ -88,14 +88,19 @@
                   <span class="sr-only">(current)</span>
                 </a>
               </li> 
+              <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
               <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Cars</a></li>
               {% if user.is_superuser %}
               <li class="nav-item"><a class="nav-link" href="{% url 'cars_create' %}">Add Car</a></li>
               {% endif %}
-              <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
-              {% comment %} <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li> {% endcomment %}
-              {% if user.is_authenticated %}
-              <li class="nav-item"><a class="nav-link" href="{% url 'account' %}">My Account</a></li>
+              {% if user.is_authenticated and user.is_superuser %}
+                  <li class="nav-item"><a class="nav-link" href="{% url 'account' %}">Management</a></li>
+              {% elif user.is_authenticated %}    
+                  <li class="nav-item"><a class="nav-link" href="{% url 'account' %}">My Account</a></li>
+              {% endif %}  
+              
+              {% if user.is_authenticated %}  
               <li class="nav-item"><a class="nav-link active" href="{% url 'logout' %}">Log Out</a></li>
               {% else %}
               <li class="nav-item"><a class="nav-link active" href="{% url 'signup' %}">Sign Up</a></li>

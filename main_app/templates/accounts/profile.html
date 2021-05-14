@@ -2,6 +2,7 @@
 {% block content %}
 
 <div class="container">
+{% if not user.is_superuser %}
   <div class="col s6 profile-table">
     <table class="striped">
       <thead>
@@ -32,6 +33,7 @@
   <div class="card-action">
     <a class="btn-book" href="{% url 'accounts_update' user.id %}">Edit Profile</a>
   </div>
+{% endif %}  
   </br>
   </br>
   <h3>Reservations</h3>
