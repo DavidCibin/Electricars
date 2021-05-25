@@ -14,7 +14,6 @@ class SignUpForm(UserCreationForm):
         fields = ('first_name', 'last_name', 'email', 'password1', 'password2',)
 
 
-
 class BookingForm(ModelForm):
   class Meta:
     model = Booking
