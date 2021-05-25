@@ -18,16 +18,12 @@ urlpatterns = [
   path('accounts/', views.account, name='account'),
   # route for photos
   path('cars/<int:car_id>/add_photo/', views.add_photo, name='add_photo'),
-
   # route for booking and extra profile form
   path('cars/<int:car_id>/addbooking/', views.addbooking, name='addbooking'),
-
   # route to update profile
   path('accounts/<int:pk>/update/', views.ProfileUpdate.as_view(), name='accounts_update'),
-
   # route for email subscription
   path("subscription/", views.subscription, name="subscription"),
-
   # path to cancel a reservation
   path('account/booking/<int:pk>/delete/', views.BookingDelete.as_view(), name='cancel_rental'),
   # path to contact form
