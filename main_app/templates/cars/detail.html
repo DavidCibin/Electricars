@@ -205,7 +205,6 @@
   console.log(finalValue, 'initial finalValue')
   document.getElementById("id_total").value = iniValue.toFixed(2);
   console.log(iniValue, 'very first')
-  // console.log(+(finalValue.value), 'initial finalValue')
 
   $('input[id="range"]').daterangepicker({
     "autoApply": true,
@@ -230,7 +229,7 @@
     console.log("changes");
   });
 
-  // JS for the insurance dropadown and calculate the insurance cost
+  // JS for the insurance dropdown and calculate the insurance cost
   var selectEl = document.getElementById('id_insurance');
   M.FormSelect.init(selectEl);
 
