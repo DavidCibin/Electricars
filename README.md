@@ -55,6 +55,7 @@ Here is my [Trello Board](https://trello.com/b/HE3OqFaE/electricar)
 
 * GIF from https://www.giphy.com
 * Icons https://fontawesome.com/
+* Date Range Picker https://www.daterangepicker.com/
 
 
 ### Special Thanks:
