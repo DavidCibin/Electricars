@@ -1,18 +1,14 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import ListView, DetailView
 import uuid
 import boto3
 from .models import Booking, Car, Photo, Profile, Contact
 from django.views.generic.edit import CreateView
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 from .forms import SignUpForm, BookingForm, ProfileForm
 from django.conf import settings
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-import json
-import requests
 from mailchimp_marketing import Client
 from mailchimp_marketing.api_client import ApiClientError
 
@@ -91,9 +87,6 @@ def signup(request):
       user.profile.last_name = form.cleaned_data.get('last_name')
       user.profile.email = form.cleaned_data.get('email')
       user.save()
-      # username = form.cleaned_data.get('username')
-      # password = form.cleaned_data.get('password1')
-      # user = authenticate(username=username, password=password)
       login(request, user)
       # This is how we log a user in via code
       # login(request, user)
@@ -147,31 +140,6 @@ def addbooking(request, car_id):
     booking_form = BookingForm(prefix="booking_form")
 
 
-
-# def add_profile(request, car_id):
-#   # create a ModelForm instance using the data in request.POST
-#   form = ProfileForm(request.POST)
-#   # validate the form
-#   if form.is_valid():
-#     # don't save the form to the db until it
-#     # has the car_id assigned
-#     new_profile = form.save(commit=False)
-#     new_profile.car_id = car_id
-#     new_profile.save()
-#   return redirect('detail', car_id=car_id)
-
-# def add_booking(request, car_id):
-#   # create a ModelForm instance using the data in request.POST
-#   form = BookingForm(request.POST)
-#   # validate the form
-#   if form.is_valid():
-#     # don't save the form to the db until it
-#     # has the car_id assigned
-#     new_booking = form.save(commit=False)
-#     new_booking.car_id = car_id
-#     new_booking.user_id = request.user.id
-#     new_booking.save()
-#   return redirect('detail', car_id=car_id)
 class CarCreate(CreateView):
   model = Car
   fields = ['make', 'model', 'passengers', 'luggage', 'suitcase', 'erange', 'price']
@@ -183,11 +151,7 @@ class CarCreate(CreateView):
     form.instance.user = self.request.user  # form.instance is the lizard
     # Let the CreateView do its job as usual
     return super().form_valid(form)
-
-# class CarCreate(CreateView):
-#   model = Car
-#   fields = '__all__'
-#   success_url = '/cars/'
+    
 
 class CarUpdate(UpdateView):
   model = Car
