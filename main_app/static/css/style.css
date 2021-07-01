@@ -73,7 +73,7 @@ body {
 .btn-float {
     position: absolute;
     right: 25px;
-    bottom: 20px;
+    bottom: 50px;
 }
 .profile-table {
     border: 1px solid #ccc;
