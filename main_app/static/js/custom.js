@@ -21,8 +21,12 @@ jQuery( document ).ready(function( $ ) {
 
           if (scroll >= box - header) {
             $("header").addClass("background-header");
-          } else {
+            $(".navbar").css("background-position-x", "-250px");
+            // $(".navbar").css("background-position-x", "-250px");
+            // height: 73px;
+        } else {
             $("header").removeClass("background-header");
+            $(".navbar").css("background-position-x", "30px");
           }
         });
         
