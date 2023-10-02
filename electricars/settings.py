@@ -95,12 +95,12 @@ WSGI_APPLICATION = 'electricars.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.postgresql',
-		'NAME': 'electricars',
-	}
-}
+# DATABASES = {
+# 	'default': {
+# 		'ENGINE': 'django.db.backends.postgresql',
+# 		'NAME': 'electricars',
+# 	}
+# }
 
 DATABASES = {
     'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
