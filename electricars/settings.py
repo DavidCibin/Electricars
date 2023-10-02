@@ -9,15 +9,14 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 import dj_database_url
-import os
 
-
-from dotenv import load_dotenv
-
-load_dotenv()
+import environ
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Rest of your settings.py file
 
@@ -31,12 +30,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.getenv('SECRET_KEY')
-MAILCHIMP_API_KEY= os.getenv('MAILCHIMP_API_KEY')
-MAILCHIMP_DATA_CENTER= os.getenv('MAILCHIMP_DATA_CENTER')
-MAILCHIMP_EMAIL_LIST_ID= os.getenv('MAILCHIMP_EMAIL_LIST_ID')
-AWS_ACCESS_KEY_ID= os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY= os.getenv('AWS_SECRET_ACCESS_KEY')
+SECRET_KEY = env('SECRET_KEY')
+MAILCHIMP_API_KEY= env('MAILCHIMP_API_KEY')
+MAILCHIMP_DATA_CENTER= env('MAILCHIMP_DATA_CENTER')
+MAILCHIMP_EMAIL_LIST_ID= env('MAILCHIMP_EMAIL_LIST_ID')
+AWS_ACCESS_KEY_ID= env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY= env('AWS_SECRET_ACCESS_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -44,7 +43,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+RENDER_EXTERNAL_HOSTNAME = env('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
@@ -103,7 +102,7 @@ DATABASES = {
 	# 	'ENGINE': 'django.db.backends.postgresql',
 	# 	'NAME': 'electricars',
 	# }
-    "default": dj_database_url.parse(os.getenv("DATABASE_URL"))
+    "default": dj_database_url.parse(env("DATABASE_URL"))
 }
 
 
