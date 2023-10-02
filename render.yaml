@@ -7,7 +7,7 @@ services:
   - type: web
     name: electricars
     runtime: python
-    buildCommand: "./build.sh"
+    buildCommand: pip install -r requirements.txt
     startCommand: "gunicorn electricars.wsgi:application"
     envVars:
       - key: DATABASE_URL
