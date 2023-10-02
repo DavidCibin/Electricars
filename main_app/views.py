@@ -101,6 +101,12 @@ def signup(request):
 # cars index view ##################################################
 def cars_index(request):
   cars = Car.objects.all()
+
+  # Calculate luggage and suitcase icons for each car
+  for car in cars:
+      car.luggage_icons = '🧳' * car.luggage
+      car.suitcase_icons = '💼' * car.suitcase
+
   return render(request, 'cars/index.html', { 'cars': cars })
 
 # cars details view ##################################################

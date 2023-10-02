@@ -1,0 +1,24 @@
+{% include 'django/forms/widgets/text.html' %}
+<script type="text/javascript">
+    window.addEventListener("DOMContentLoaded", function() {
+        $('#{{ widget.attrs.id }}').daterangepicker({{ widget.picker.options.json }});
+
+
+        {% if widget.picker.clearable %}
+            $('#{{ widget.attrs.id }}').on('apply.daterangepicker', function(ev, picker) {
+
+                {% if widget.picker.options.python.singleDatePicker %}
+                    $(this).val(picker.startDate.format('{{ widget.picker.options.python.locale.format }}'));
+                {% else %}
+                    $(this).val(picker.startDate.format('{{ widget.picker.options.python.locale.format }}') + '{{ widget.picker.separator }}' + picker.endDate.format('{{ widget.picker.options.python.locale.format }}'));
+                {% endif %}
+
+            });
+
+            $('#{{ widget.attrs.id }}').on('cancel.daterangepicker', function(ev, picker) {
+                $(this).val('');
+            });
+        {% endif %}
+
+    });
+</script>

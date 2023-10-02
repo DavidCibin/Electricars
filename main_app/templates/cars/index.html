@@ -33,27 +33,11 @@
             {% endif %}
           </span>
         </p>
-        <p class="card-text">Luggage:
+        <p class="card-text">Luggage: 
           <span class="luggage">
-            {% if car.luggage == 1 %}
-            🧳
-            {% elif car.luggage == 2 %}
-            🧳 🧳
-            {% elif car.luggage == 3 %}
-            🧳 🧳 🧳
-            {% elif car.luggage == 4 %}
-            🧳 🧳 🧳 🧳
-            {% endif %}
+            {{ car.luggage_icons }}
             <span class="suitcase">
-              {% if car.suitcase == 1 %}
-              💼
-              {% elif car.suitcase == 2 %}
-              💼 💼
-              {% elif car.suitcase == 3 %}
-              💼 💼 💼
-              {% elif car.suitcase == 4 %}
-              💼 💼 💼 💼
-              {% endif %}
+              {{ car.suitcase_icons }}
             </span>
           </span>
         </p>

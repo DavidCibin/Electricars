@@ -11,9 +11,16 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import environ
-env = environ.Env()
-environ.Env.read_env()
+import dj_database_url
+import os
+
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# Rest of your settings.py file
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,12 +31,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = env('SECRET_KEY')
-MAILCHIMP_API_KEY= env('MAILCHIMP_API_KEY')
-MAILCHIMP_DATA_CENTER= env('MAILCHIMP_DATA_CENTER')
-MAILCHIMP_EMAIL_LIST_ID= env('MAILCHIMP_EMAIL_LIST_ID')
-AWS_ACCESS_KEY_ID= env('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY= env('AWS_SECRET_ACCESS_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
+MAILCHIMP_API_KEY= os.getenv('MAILCHIMP_API_KEY')
+MAILCHIMP_DATA_CENTER= os.getenv('MAILCHIMP_DATA_CENTER')
+MAILCHIMP_EMAIL_LIST_ID= os.getenv('MAILCHIMP_EMAIL_LIST_ID')
+AWS_ACCESS_KEY_ID= os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY= os.getenv('AWS_SECRET_ACCESS_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -88,10 +95,11 @@ WSGI_APPLICATION = 'electricars.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.postgresql',
-		'NAME': 'electricars',
-	}
+	# 'default': {
+	# 	'ENGINE': 'django.db.backends.postgresql',
+	# 	'NAME': 'electricars',
+	# }
+    "default": dj_database_url.parse(os.getenv("DATABASE_URL"))
 }
 
 
