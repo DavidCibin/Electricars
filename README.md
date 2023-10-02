@@ -1,4 +1,4 @@
-# ElectriCars - Electric Cars Rental
+# ElectriCars - Electric Cars Rental Demo
 
 ## Description
 
