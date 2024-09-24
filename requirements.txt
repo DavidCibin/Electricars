@@ -32,7 +32,7 @@ requests==2.25.1
 s3transfer==0.4.2
 six==1.16.0
 sqlparse==0.4.1
-typing_extensions==4.12.2
+typing_extensions==4.7.1
 urllib3==1.26.6
 uvicorn==0.30.6
 virtualenv==20.21.0
