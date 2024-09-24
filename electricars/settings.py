@@ -14,6 +14,8 @@ from pathlib import Path
 import dj_database_url
 
 import environ
+# environ.Env.read_env()  # Read the .env file
+
 
 # Rest of your settings.py file
 
@@ -27,7 +29,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('pwj5e#g*-uyc61!k22jvv_mtn9x@$r=t5gym_(w0z6!g*e$_^d')
+# SECRET_KEY = os.getenv('SECRET_KEY')
+# SECRET_KEY = environ.Env().str('SECRET_KEY')
 MAILCHIMP_API_KEY = os.getenv('MAILCHIMP_API_KEY')
 MAILCHIMP_DATA_CENTER = os.getenv('MAILCHIMP_DATA_CENTER')
 MAILCHIMP_EMAIL_LIST_ID = os.getenv('MAILCHIMP_EMAIL_LIST_ID')
@@ -36,9 +40,11 @@ AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', "False").lower() == "true"
+DEBUG = True
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(" ")
+# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(" ")
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(",")
+
 
 RENDER_EXTERNAL_HOSTNAME = os.getenv('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
@@ -62,13 +68,13 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'electricars.urls'
@@ -102,8 +108,22 @@ WSGI_APPLICATION = 'electricars.wsgi.application'
 # 	}
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',  # Use 'django.db.backends.sqlite3' for SQLite
+#         'NAME': 'electricars',                # Your new database name
+#         'USER': 'davidcibin',                     # Your PostgreSQL username
+#         'PASSWORD': '29260370',                 # Your PostgreSQL password
+#         'HOST': 'localhost',                         # Set to 'localhost' or the appropriate host
+#         'PORT': '5432',                              # Default PostgreSQL port
+#     }
+# }
+
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),  # This will fetch from the environment variable
+        conn_max_age=600
+    )
 }
 
 
