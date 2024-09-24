@@ -119,9 +119,16 @@ WSGI_APPLICATION = 'electricars.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=os.getenv('DATABASE_URL'),  # This will fetch from the environment variable
+#         conn_max_age=600
+#     )
+# }
+
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL'),  # This will fetch from the environment variable
+        default='postgres://ltucgkvv:EV6fvdq9WzaCXX3uZDJntYYlASrX5cBr@jelani.db.elephantsql.com/ltucgkvv',
         conn_max_age=600
     )
 }
