@@ -124,10 +124,8 @@
     autoClose: true,
     onSelect: d1 => {
       startDate = firstDate.date
-      console.log(startDate, 'startDate!!')
       nextDay = new Date(startDate.getTime() + (24 * 60 * 60 * 1000));
-      console.log(nextDay, 'nextDay!!')
-      here()
+      getDay()
     },
   });
   var endDate = '';
@@ -135,18 +133,15 @@
   var end_dateEl = document.getElementById('id_end_date');
   var today = new Date();
   var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
-  console.log(nextDay, 'nextDay!!')
 
 
-  function here() {
+  function getDay() {
     if (nextDay !== '') {
       dd = nextDay
-      console.log(dd, 'dd if')
       return dd
     }
     else {
       dd = tomorrow
-      console.log(dd, 'dd else')
       return dd
     }
   }
@@ -154,7 +149,7 @@
   var lastDate = M.Datepicker.init(end_dateEl, {
     format: 'yyyy-mm-dd',
     defaultDate: tomorrow,
-    onOpen: here(),
+    onOpen: getDay(),
     minDate: dd,
     maxDate: new Date(topMaxDate),
     setDefaultDate: true,
@@ -172,9 +167,6 @@
   var totalDays = 2
   function getDays() {
     totalDays = Math.round(Math.abs((endDate - startDate) / oneDay));
-    console.log(totalDays, 'totalDays!!')
-    console.log(startDate)
-    console.log(endDate)
   }
 
   let coverageStatus = false
@@ -182,13 +174,10 @@
   const d1 = new Date().setDate(today.getDate() + 5);
   const d2 = new Date().setDate(today.getDate() + 6);
   const dropDown = document.getElementsByClassName('dropdown-content')
-  console.log(dropDown, 'dropDown!!')
   let iniValue = +(document.getElementById('price').innerHTML).replace("$", "").split("<", 1);
   let finalValue = document.getElementById('id_total');
   finalValue = iniValue
-  console.log(finalValue, 'initial finalValue')
   document.getElementById("id_total").value = iniValue.toFixed(2);
-  console.log(iniValue, 'very first')
 
   $('input[id="range"]').daterangepicker({
     "autoApply": true,
@@ -236,6 +225,10 @@
       document.getElementById("total-days").innerText = (totalDays - 1);
     }
   });
+
+  const dateRange = document.getElementById('range').value.split(' - ')
+  $("#id_start_date").val(dateRange[0]);
+  $("#id_end_date").val(dateRange[1]);
 
 </script>
 
