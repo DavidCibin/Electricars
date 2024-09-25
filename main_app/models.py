@@ -89,7 +89,7 @@ def update_profile_signal(sender, instance, created, **kwargs):
 class Contact(models.Model):
   name = models.CharField(max_length=100)
   email = EmailField()
-  subject = models.CharField(max_length=100)
+  subject = models.CharField(max_length=254)
   message = models.TextField(max_length=100)
   
   def __str__(self):
